@@ -1,8 +1,41 @@
 ## Getting Started
 
+### Quick Start (Chinese)
+
+**Current Recommended Method:**
+```bash
+# 1. Start the server
+python3 -m http.server 8080
+
+# 2. Open browser and visit
+http://localhost:8080/demo.html
+```
+
+**Why this method is recommended:**
+- No Node.js upgrade required
+- Contains all required features
+- Immediately available, no compatibility issues
+- Complete prototype demonstration
+
 ### Prerequisites
-- Node.js (v16 or higher)
+- Node.js (v16 or higher) - **Note: Current setup uses Node.js v12.22.9**
 - npm or yarn
+- Python 3 (for fallback server)
+
+### Recommended Running Method
+
+#### **Demo Website (Recommended)**
+```bash
+# Start Python server
+python3 -m http.server 8080
+
+# Access demo website
+http://localhost:8080/demo.html
+```
+**Advantages:**
+- No Node.js upgrade required
+- Contains all functional features
+- Immediately available, no compatibility issues
 
 ### Installation
 
@@ -12,22 +45,21 @@
    cd Legal-Youth-prototype-web
    ```
 
-2. **Install dependencies**
+2. **Setup the demo website:**
    ```bash
-   npm install
+   python3 -m http.server 8080
+   # Visit: http://localhost:8080/demo.html
    ```
 
-3. **Start the development server**
-   ```bash
-   npm start
-   ```
+3. **Open your browser**
+   Navigate to `http://localhost:8080/demo.html`
 
-4. **Open your browser**
-   Navigate to `http://localhost:8080`
+### Note on React App
 
-5. **if all does not work**
-   do ```python3 -m http.server number```
-   go to `http://localhost:number/demo.html`
+**Current Limitation:**
+- Node.js v12.22.9 is incompatible with modern React dependencies
+- The React app requires Node.js v16+ to run properly
+- The demo website provides full functionality without this limitation
 
 ### Building for Production
 
@@ -72,3 +104,45 @@ src/
 ├── App.tsx
 └── index.tsx
 ```
+
+## Troubleshooting
+
+### Demo Website Issues
+
+**Port already in use:**
+```bash
+# Stop existing server
+pkill -f "python3 -m http.server"
+
+# Start on different port
+python3 -m http.server 8081
+# Visit: http://localhost:8081/demo.html
+```
+
+**File not found:**
+- Ensure you're in the correct directory
+- Check that demo.html exists in the project root
+
+## Testing
+
+The project includes comprehensive testing documentation in `TESTING-REPORT.md`.
+
+## Deployment
+
+The application can be deployed to various platforms:
+
+- **Vercel**: Zero-config deployment
+- **Netlify**: Static site hosting
+- **GitHub Pages**: Free hosting for static sites
+- **AWS S3**: Scalable cloud hosting
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.
