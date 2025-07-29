@@ -23,7 +23,11 @@
    ```
 
 4. **Open your browser**
-   Navigate to `http://localhost:3000`
+   Navigate to `http://localhost:8080`
+
+5. **if all does not work**
+   do ```python3 -m http.server number```
+   go to `http://localhost:number/demo.html`
 
 ### Building for Production
 
