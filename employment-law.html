@@ -552,7 +552,7 @@
                         <a href="#legal-calculate">Legal Calculate</a>
                         <a href="#rights-checklist">Rights Checklist</a>
                         <a href="#case-timeline">Case Timeline</a>
-                        <a href="#book-lawyer">Book Volunteer Lawyer</a>
+                        <a href="book-volunteer-lawyer.html">Book Volunteer Lawyer</a>
                         <a href="#legal-templates">Legal Templates</a>
                     </div>
                 </li>
@@ -720,7 +720,7 @@
                 </div>
 
                 <h3>Get Legal Help</h3>
-                <a href="#" class="btn">Book Free Consultation</a>
+                <a href="book-volunteer-lawyer.html" class="btn">Book Volunteer Lawyer</a>
                 <a href="#" class="btn btn-outline">Download Legal Forms</a>
             </div>
         </div>
@@ -785,9 +785,13 @@
             });
         });
 
-        // Add interactivity to buttons
+        // Add interactivity to buttons (except Book Volunteer Lawyer)
         document.querySelectorAll('.btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
+                // Skip the Book Volunteer Lawyer button as it has its own link
+                if (this.textContent.trim() === 'Book Volunteer Lawyer') {
+                    return;
+                }
                 e.preventDefault();
                 const buttonText = this.textContent;
                 alert(`${buttonText}\n\nThis would open a booking form or download page for the requested service.`);
