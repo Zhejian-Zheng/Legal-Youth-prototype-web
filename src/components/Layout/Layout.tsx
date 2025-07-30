@@ -32,6 +32,7 @@ import {
   KeyboardArrowUp as ArrowUpIcon,
   School as SchoolIcon,
   Group as GroupIcon,
+  Advanced as AdvancedIcon,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -52,6 +53,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navigationItems = [
     { text: 'Home', icon: <HomeIcon />, path: '/' },
     { text: 'Search', icon: <SearchIcon />, path: '/search' },
+    { text: 'Advanced Search', icon: <AdvancedIcon />, path: '/advanced-search' },
     { text: 'Categories', icon: <CategoryIcon />, path: '/category/employment' },
     { text: 'Resources', icon: <LibraryIcon />, path: '/resources' },
     { text: 'Tools', icon: <ToolsIcon />, path: '/tools' },

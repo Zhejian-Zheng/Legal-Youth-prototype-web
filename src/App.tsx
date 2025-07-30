@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import Layout from './components/Layout/Layout';
 import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
+import AdvancedSearch from './pages/AdvancedSearch';
 import CategoryPage from './pages/CategoryPage';
 import ArticlePage from './pages/ArticlePage';
 import ResourceLibrary from './pages/ResourceLibrary';
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/advanced-search" element={<AdvancedSearch />} />
           <Route path="/category/:categoryId" element={<CategoryPage />} />
           <Route path="/article/:articleId" element={<ArticlePage />} />
           <Route path="/resources" element={<ResourceLibrary />} />

@@ -40,8 +40,9 @@ import {
   Clear as ClearIcon,
   FilterList as FilterIcon,
   Sort as SortIcon,
+  Advanced as AdvancedIcon,
 } from '@mui/icons-material';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Fuse from 'fuse.js';
 
@@ -59,6 +60,7 @@ interface SearchResult {
 
 const SearchPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -251,9 +253,18 @@ const SearchPage: React.FC = () => {
       <Container maxWidth="lg">
         {/* Search Header */}
         <Box sx={{ mb: 4 }}>
-          <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
-            Search Legal Resources
-          </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+            <Typography variant="h3" component="h1">
+              Search Legal Resources
+            </Typography>
+            <Button
+              variant="outlined"
+              startIcon={<AdvancedIcon />}
+              onClick={() => navigate('/advanced-search')}
+            >
+              Advanced Search
+            </Button>
+          </Box>
           
           {/* Search Bar */}
           <Paper sx={{ p: 3, mb: 3 }}>
