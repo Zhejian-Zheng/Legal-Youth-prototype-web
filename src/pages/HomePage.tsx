@@ -31,6 +31,7 @@ import {
   Security as SecurityIcon,
   Accessibility as AccessibilityIcon,
   Send as SendIcon,
+  Info as InfoIcon,
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -40,6 +41,12 @@ const HomePage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [chatMessage, setChatMessage] = useState('');
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [chatHistory, setChatHistory] = useState<Array<{type: 'user' | 'assistant', message: string}>>([
+    {
+      type: 'assistant',
+      message: 'Hi! I\'m your legal assistant. I can help explain legal concepts, guide you through processes, and provide information about your rights. What would you like to know about?'
+    }
+  ]);
   const navigate = useNavigate();
 
   const categories = [
@@ -137,11 +144,40 @@ const HomePage: React.FC = () => {
   const handleChatSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (chatMessage.trim()) {
-      // Handle chat message
-      console.log('Chat message:', chatMessage);
+      const userMessage = chatMessage.trim();
+      
+      // Add user message to chat history
+      setChatHistory(prev => [...prev, { type: 'user', message: userMessage }]);
+      
+      // Generate response based on keywords
+      let response = '';
+      const lowerMessage = userMessage.toLowerCase();
+      
+      if (lowerMessage.includes('tenant') || lowerMessage.includes('rent') || lowerMessage.includes('eviction')) {
+        response = 'As a tenant, you have important rights including:\n\n• Right to a habitable living space\n• Protection from illegal eviction\n• Right to privacy and quiet enjoyment\n• Right to request repairs\n• Protection from discrimination\n\nLandlords must give proper notice before eviction (usually 30-60 days depending on your state). They cannot evict you without going through proper legal procedures.';
+      } else if (lowerMessage.includes('employment') || lowerMessage.includes('work') || lowerMessage.includes('fired')) {
+        response = 'Employment rights include:\n\n• Right to minimum wage and overtime pay\n• Protection from discrimination and harassment\n• Right to a safe workplace\n• Right to organize and join unions\n• Protection from retaliation for reporting violations\n\nIf you\'re fired, you may have rights to unemployment benefits and potential legal claims if the termination was wrongful.';
+      } else if (lowerMessage.includes('student') || lowerMessage.includes('education') || lowerMessage.includes('school')) {
+        response = 'Student rights include:\n\n• Right to free public education\n• Protection from discrimination\n• Right to due process in disciplinary matters\n• Right to accommodations for disabilities\n• Protection of free speech and expression\n\nSchools must follow specific procedures before suspending or expelling students, and you have the right to appeal disciplinary decisions.';
+      } else if (lowerMessage.includes('consumer') || lowerMessage.includes('contract') || lowerMessage.includes('scam')) {
+        response = 'Consumer rights protect you from:\n\n• False advertising and deceptive practices\n• Unfair contract terms\n• Fraud and scams\n• Defective products\n• Unauthorized charges\n\nYou have the right to cancel many contracts within a cooling-off period, and you can dispute unauthorized charges on your credit cards.';
+      } else if (lowerMessage.includes('family') || lowerMessage.includes('divorce') || lowerMessage.includes('custody')) {
+        response = 'Family law covers:\n\n• Divorce and separation procedures\n• Child custody and visitation rights\n• Child support obligations\n• Property division\n• Domestic violence protection\n\nCourts prioritize the best interests of children in custody decisions, and both parents typically have rights to maintain relationships with their children.';
+      } else if (lowerMessage.includes('privacy') || lowerMessage.includes('digital') || lowerMessage.includes('online')) {
+        response = 'Digital privacy rights include:\n\n• Protection of personal information online\n• Right to know what data companies collect\n• Right to request deletion of your data\n• Protection from cyberbullying and harassment\n• Right to control your digital footprint\n\nCompanies must get your consent before collecting and using your personal information, and you have rights under laws like GDPR and CCPA.';
+      } else {
+        response = 'I can help explain various legal topics including:\n\n• Tenant and housing rights\n• Employment and workplace rights\n• Student and education rights\n• Consumer protection and contracts\n• Family law and custody\n• Digital privacy and online rights\n\nPlease ask about any specific legal topic you\'d like to understand better!';
+      }
+      
+      // Add assistant response to chat history
+      setTimeout(() => {
+        setChatHistory(prev => [...prev, { type: 'assistant', message: response }]);
+      }, 500);
+      
       setChatMessage('');
     }
   };
+
 
   return (
     <>
@@ -408,9 +444,9 @@ const HomePage: React.FC = () => {
           </Grid>
         </Box>
 
-        {/* AI Chatbot */}
+        {/* AI Chat Assistant */}
         <Box sx={{ position: 'fixed', bottom: 20, right: 20, zIndex: 1000 }}>
-          <Tooltip title="Ask our AI Legal Assistant">
+          <Tooltip title="Ask AI Legal Assistant">
             <IconButton
               onClick={() => setIsChatOpen(!isChatOpen)}
               sx={{
@@ -434,25 +470,48 @@ const HomePage: React.FC = () => {
               position: 'fixed',
               bottom: 90,
               right: 20,
-              width: 350,
+              width: 380,
               height: 500,
               zIndex: 1000,
               display: 'flex',
               flexDirection: 'column',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
             }}
           >
-            <Box sx={{ p: 2, backgroundColor: 'primary.main', color: 'white' }}>
-              <Typography variant="h6">AI Legal Assistant</Typography>
+            <Box sx={{ p: 2, backgroundColor: 'primary.main', color: 'white', display: 'flex', alignItems: 'center', gap: 1 }}>
+              <InfoIcon />
+              <Typography variant="h6">Legal Assistant</Typography>
             </Box>
-            <Box sx={{ flexGrow: 1, p: 2, overflow: 'auto' }}>
-              <Alert severity="info" sx={{ mb: 2 }}>
-                Hi! I'm here to help with your legal questions. What can I assist you with today?
-              </Alert>
+            <Box sx={{ flexGrow: 1, p: 2, overflow: 'auto', maxHeight: 400 }}>
+              {chatHistory.map((chat, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    mb: 2,
+                    display: 'flex',
+                    justifyContent: chat.type === 'user' ? 'flex-end' : 'flex-start',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      maxWidth: '80%',
+                      p: 1.5,
+                      borderRadius: 2,
+                      backgroundColor: chat.type === 'user' ? 'primary.main' : 'grey.100',
+                      color: chat.type === 'user' ? 'white' : 'text.primary',
+                    }}
+                  >
+                    <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
+                      {chat.message}
+                    </Typography>
+                  </Box>
+                </Box>
+              ))}
             </Box>
-            <Box component="form" onSubmit={handleChatSubmit} sx={{ p: 2 }}>
+            <Box component="form" onSubmit={handleChatSubmit} sx={{ p: 2, borderTop: 1, borderColor: 'divider' }}>
               <TextField
                 fullWidth
-                placeholder="Type your legal question..."
+                placeholder="Ask about your legal rights..."
                 value={chatMessage}
                 onChange={(e) => setChatMessage(e.target.value)}
                 variant="outlined"
@@ -460,7 +519,7 @@ const HomePage: React.FC = () => {
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-                      <IconButton type="submit" size="small">
+                      <IconButton type="submit" size="small" disabled={!chatMessage.trim()}>
                         <SendIcon />
                       </IconButton>
                     </InputAdornment>
