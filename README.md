@@ -5,7 +5,7 @@
 python3 -m http.server 8080
 
 # 2. Open browser and visit
-http://localhost:8080/demo.html
+http://localhost:8080/index.html
 ```
 
 
