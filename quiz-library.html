@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Library - Legal Youth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            font-size: 16px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title h1 {
+            font-size: 3rem;
+            color: #1976d2;
+            margin-bottom: 1rem;
+        }
+
+        .page-title p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .search-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .quiz-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .quiz-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .quiz-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #1976d2;
+        }
+
+        .quiz-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-category {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .quiz-difficulty {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .difficulty-beginner {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .difficulty-intermediate {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .difficulty-advanced {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .quiz-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1976d2;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .quiz-progress {
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #8bc34a);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .quiz-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: #f5f5f5;
+            color: #666;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .quiz-actions {
+            padding: 1.5rem;
+            background: #fafafa;
+        }
+
+        .start-quiz-btn {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #1976d2, #42a5f5);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .start-quiz-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #ffc107;
+        }
+
+        .rating-text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Breadcrumb indicator */
+        .breadcrumb {
+            background: rgba(255,255,255,0.9);
+            padding: 0.5rem 2rem;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb span {
+            color: #1976d2;
+            font-weight: bold;
+        }
+
+        .breadcrumb .separator {
+            margin: 0 0.5rem;
+            color: #999;
+        }
+
+        /* Stats Bar Styles */
+        .stats-section {
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .stats-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            justify-content: space-around;
+            min-width: 300px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-align: center;
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+            width: 2rem;
+            text-align: center;
+        }
+
+        .stat-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1976d2;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.25rem;
+            text-align: center;
+        }
+
+        /* Create Quiz Button Styles */
+        .create-quiz-section {
+            margin-bottom: 2rem;
+        }
+
+        .create-quiz-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #ff9800, #ffb74d);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+        }
+
+        .create-quiz-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+            background: linear-gradient(135deg, #f57c00, #ff9800);
+        }
+
+        .create-quiz-btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-icon {
+            font-size: 1.1rem;
+        }
+
+        /* Dropdown menu */
+        .nav-links li {
+            position: relative;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-links li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a:hover {
+            background-color: #f5f5f5;
+            color: #1976d2;
+        }
+
+        .dropdown-icon {
+            font-size: 0.8rem;
+            margin-left: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .quiz-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-filters {
+                flex-direction: column;
+            }
+            
+            .search-box {
+                min-width: auto;
+            }
+
+            .stats-section {
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+
+            .stats-bar {
+                flex-direction: row;
+                gap: 0.5rem;
+                padding: 0.5rem;
+                min-width: auto;
+                width: 100%;
+            }
+
+            .stat-item {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">⚖️ Legal Youth</a>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="#forum">Forum <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown">
+                        <a href="user-forums.html">User Forums</a>
+                        <a href="#your-posts">Your Posts</a>
+                        <a href="#messages">Chat Box</a>
+                        <a href="#notifications">Notifications</a>
+                        <a href="#forum-stats">Forum Stats</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#quizzes">Quizzes <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown">
+                        <a href="quiz-library.html">Quiz Library</a>
+                        <a href="#rank">Your Rank & Points</a>
+                        <a href="#leaderboard">Leaderboard</a>
+                        <a href="#live-competition">Live Quiz Competition</a>
+                        <a href="#achievements">Achievements</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#resources">Resources <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown">
+                        <a href="#hot-cases">Hot Cases</a>
+                        <a href="#legal-books">Legal Books</a>
+                        <a href="#lawyer-videos">Lawyer Videos</a>
+                        <a href="#case-studies">Case Studies</a>
+                        <a href="#legal-forms">Legal Forms</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#tools">Tools <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown">
+                        <a href="#legal-calculate">Legal Calculate</a>
+                        <a href="#rights-checklist">Rights Checklist</a>
+                        <a href="#case-timeline">Case Timeline</a>
+                        <a href="#book-lawyer">Book Volunteer Lawyer</a>
+                        <a href="#legal-templates">Legal Templates</a>
+                    </div>
+                </li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator">></span>
+        <span id="current-page">Quiz Library</span>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-section">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-icon">📊</div>
+                <div class="stat-content">
+                    <div class="stat-value">24</div>
+                    <div class="stat-label">Quizzes Completed</div>
+                </div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-content">
+                    <div class="stat-value">1,850</div>
+                    <div class="stat-label">Current Score</div>
+                </div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-icon">🥇</div>
+                <div class="stat-content">
+                    <div class="stat-value">#7</div>
+                    <div class="stat-label">Leaderboard Rank</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="page-title">
+            <h1>Quiz Library</h1>
+            <p>Test your legal knowledge with interactive quizzes</p>
+        </div>
+
+        <div class="search-filters">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search quizzes..." onkeyup="filterQuizzes()">
+            </div>
+            <select class="filter-select" id="categoryFilter" onchange="filterQuizzes()">
+                <option value="all">All Categories</option>
+                <option value="Employment">Employment</option>
+                <option value="Housing">Housing</option>
+                <option value="Criminal Justice">Criminal Justice</option>
+                <option value="Education">Education</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Digital Rights">Digital Rights</option>
+                <option value="Immigration">Immigration</option>
+                <option value="LGBTQ+ Rights">LGBTQ+ Rights</option>
+            </select>
+            <select class="filter-select" id="difficultyFilter" onchange="filterQuizzes()">
+                <option value="all">All Levels</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+            </select>
+        </div>
+
+        <!-- Create Quiz Button -->
+        <div class="create-quiz-section">
+            <button class="create-quiz-btn" onclick="createQuiz()">
+                <span class="btn-icon">➕</span>
+                Create New Quiz
+            </button>
+        </div>
+
+        <div class="quiz-grid" id="quizGrid">
+            <!-- Quiz cards will be populated by JavaScript -->
+        </div>
+    </main>
+
+    <script>
+        const quizzes = [
+            {
+                id: '1',
+                title: 'Know Your Rights: Employment Law',
+                description: 'Test your knowledge about workplace rights, minimum wage, overtime, and discrimination laws.',
+                category: 'Employment',
+                difficulty: 'Beginner',
+                estimatedTime: 15,
+                questionCount: 20,
+                rating: 4.5,
+                completionRate: 85,
+                tags: ['employment', 'rights', 'workplace']
+            },
+            {
+                id: '2',
+                title: 'Housing Rights & Tenant Law',
+                description: 'Learn about your rights as a tenant, eviction procedures, and housing discrimination.',
+                category: 'Housing',
+                difficulty: 'Intermediate',
+                estimatedTime: 20,
+                questionCount: 25,
+                rating: 4.2,
+                completionRate: 72,
+                tags: ['housing', 'tenant', 'eviction']
+            },
+            {
+                id: '3',
+                title: 'Criminal Justice System',
+                description: 'Understand your rights when interacting with law enforcement and the criminal justice system.',
+                category: 'Criminal Justice',
+                difficulty: 'Advanced',
+                estimatedTime: 25,
+                questionCount: 30,
+                rating: 4.8,
+                completionRate: 68,
+                tags: ['criminal', 'police', 'rights']
+            },
+            {
+                id: '4',
+                title: 'Education Rights & Special Needs',
+                description: 'Know your educational rights, IEPs, accommodations, and discrimination in schools.',
+                category: 'Education',
+                difficulty: 'Intermediate',
+                estimatedTime: 18,
+                questionCount: 22,
+                rating: 4.3,
+                completionRate: 78,
+                tags: ['education', 'IEP', 'accommodations']
+            },
+            {
+                id: '5',
+                title: 'Healthcare & Medical Rights',
+                description: 'Understand your healthcare rights, consent, privacy, and access to medical care.',
+                category: 'Healthcare',
+                difficulty: 'Beginner',
+                estimatedTime: 12,
+                questionCount: 18,
+                rating: 4.1,
+                completionRate: 81,
+                tags: ['healthcare', 'medical', 'privacy']
+            },
+            {
+                id: '6',
+                title: 'Digital Privacy & Online Rights',
+                description: 'Learn about your digital rights, social media privacy, and online harassment.',
+                category: 'Digital Rights',
+                difficulty: 'Intermediate',
+                estimatedTime: 16,
+                questionCount: 20,
+                rating: 4.4,
+                completionRate: 75,
+                tags: ['digital', 'privacy', 'online']
+            },
+            {
+                id: '7',
+                title: 'Immigration Rights & DACA',
+                description: 'Understand immigration rights, DACA, and resources for immigrant youth.',
+                category: 'Immigration',
+                difficulty: 'Advanced',
+                estimatedTime: 22,
+                questionCount: 28,
+                rating: 4.6,
+                completionRate: 65,
+                tags: ['immigration', 'DACA', 'rights']
+            },
+            {
+                id: '8',
+                title: 'LGBTQ+ Rights & Discrimination',
+                description: 'Learn about LGBTQ+ rights, discrimination protection, and resources for LGBTQ+ youth.',
+                category: 'LGBTQ+ Rights',
+                difficulty: 'Intermediate',
+                estimatedTime: 19,
+                questionCount: 24,
+                rating: 4.7,
+                completionRate: 70,
+                tags: ['LGBTQ+', 'discrimination', 'rights']
+            }
+        ];
+
+        function renderStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '★';
+            }
+            
+            if (hasHalfStar) {
+                stars += '☆';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '☆';
+            }
+            
+            return stars;
+        }
+
+        function renderQuizzes(quizzesToRender) {
+            const grid = document.getElementById('quizGrid');
+            grid.innerHTML = '';
+
+            if (quizzesToRender.length === 0) {
+                grid.innerHTML = `
+                    <div style="text-align: center; grid-column: 1 / -1; padding: 3rem;">
+                        <h3>No quizzes found matching your criteria</h3>
+                        <p>Try adjusting your search or filters</p>
+                    </div>
+                `;
+                return;
+            }
+
+            quizzesToRender.forEach(quiz => {
+                const card = document.createElement('div');
+                card.className = 'quiz-card';
+                card.innerHTML = `
+                    <div class="quiz-header">
+                        <div class="quiz-title">${quiz.title}</div>
+                        <div class="quiz-description">${quiz.description}</div>
+                        
+                        <div class="quiz-meta">
+                            <span class="quiz-category">${quiz.category}</span>
+                            <span class="quiz-difficulty difficulty-${quiz.difficulty.toLowerCase()}">${quiz.difficulty}</span>
+                        </div>
+                        
+                        <div class="rating">
+                            <span class="stars">${renderStars(quiz.rating)}</span>
+                            <span class="rating-text">(${quiz.rating} stars)</span>
+                        </div>
+                        
+                        <div class="quiz-stats">
+                            <div class="stat">
+                                <div class="stat-value">${quiz.estimatedTime}</div>
+                                <div class="stat-label">minutes</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">${quiz.questionCount}</div>
+                                <div class="stat-label">questions</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">${quiz.completionRate}%</div>
+                                <div class="stat-label">completion</div>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${quiz.completionRate}%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-tags">
+                            ${quiz.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="quiz-actions">
+                        <button class="start-quiz-btn" onclick="startQuiz('${quiz.id}')">
+                            Start Quiz
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterQuizzes() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const selectedCategory = document.getElementById('categoryFilter').value;
+            const selectedDifficulty = document.getElementById('difficultyFilter').value;
+
+            const filtered = quizzes.filter(quiz => {
+                const matchesSearch = quiz.title.toLowerCase().includes(searchQuery) ||
+                                    quiz.description.toLowerCase().includes(searchQuery) ||
+                                    quiz.tags.some(tag => tag.toLowerCase().includes(searchQuery));
+                const matchesCategory = selectedCategory === 'all' || quiz.category === selectedCategory;
+                const matchesDifficulty = selectedDifficulty === 'all' || quiz.difficulty === selectedDifficulty;
+                
+                return matchesSearch && matchesCategory && matchesDifficulty;
+            });
+
+            renderQuizzes(filtered);
+        }
+
+        function startQuiz(quizId) {
+            alert(`Starting quiz: ${quizId}\n\nThis would open the interactive quiz interface.`);
+        }
+
+        // Create Quiz functionality
+        function createQuiz() {
+            alert('📝 Create New Quiz\n\nThis would open a quiz creation form with:\n\n• Quiz Title\n• Description\n• Category Selection\n• Difficulty Level\n• Question Editor\n• Answer Options\n• Time Limits\n• Tags & Keywords\n\nYou would need appropriate permissions to create quizzes.');
+        }
+
+        // Initialize the page
+        renderQuizzes(quizzes);
+    </script>
+</body>
+</html> 

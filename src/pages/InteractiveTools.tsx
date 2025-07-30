@@ -345,9 +345,19 @@ const InteractiveTools: React.FC = () => {
         <Grid container spacing={4}>
           {/* Quizzes Section */}
           <Grid item xs={12} md={6}>
-            <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
-              Rights Check Quizzes
-            </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+              <Typography variant="h4" component="h2">
+                Rights Check Quizzes
+              </Typography>
+              <Button
+                variant="outlined"
+                startIcon={<SchoolIcon />}
+                onClick={() => navigate('/quizzes')}
+                sx={{ textTransform: 'none' }}
+              >
+                View All Quizzes
+              </Button>
+            </Box>
             <Grid container spacing={3}>
               {quizzes.map((quiz) => (
                 <Grid item xs={12} key={quiz.id}>

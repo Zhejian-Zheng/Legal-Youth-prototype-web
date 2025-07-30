@@ -12,6 +12,8 @@ import InteractiveTools from './pages/InteractiveTools';
 import AboutUs from './pages/AboutUs';
 import LegalAidMap from './pages/LegalAidMap';
 import Forum from './pages/Forum';
+import QuizLibrary from './pages/QuizLibrary';
+import UserForums from './pages/UserForums';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -30,6 +32,8 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/legal-aid-map" element={<LegalAidMap />} />
           <Route path="/forum" element={<Forum />} />
+          <Route path="/quizzes" element={<QuizLibrary />} />
+          <Route path="/forums" element={<UserForums />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

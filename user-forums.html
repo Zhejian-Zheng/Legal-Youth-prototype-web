@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Forums - Legal Youth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            font-size: 16px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title h1 {
+            font-size: 3rem;
+            color: #1976d2;
+            margin-bottom: 1rem;
+        }
+
+        .page-title p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .search-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .forum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .forum-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .forum-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .forum-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .forum-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #1976d2;
+        }
+
+        .forum-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .forum-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .forum-category {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .forum-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .status-inactive {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .forum-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1976d2;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .forum-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: #f5f5f5;
+            color: #666;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .forum-activity {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .forum-actions {
+            padding: 1.5rem;
+            background: #fafafa;
+        }
+
+        .join-forum-btn {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #1976d2, #42a5f5);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .join-forum-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+        }
+
+        .moderators {
+            margin-top: 1rem;
+        }
+
+        .moderators-title {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .moderator-list {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .moderator {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        /* Breadcrumb indicator */
+        .breadcrumb {
+            background: rgba(255,255,255,0.9);
+            padding: 0.5rem 2rem;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb span {
+            color: #1976d2;
+            font-weight: bold;
+        }
+
+        .breadcrumb .separator {
+            margin: 0 0.5rem;
+            color: #999;
+        }
+
+        /* Anonymous Switch Styles */
+        .anonymous-switch {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+            justify-content: space-between;
+            max-width: 300px;
+        }
+
+        .switch-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .switch-icon {
+            font-size: 1.2rem;
+        }
+
+        .switch-text {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .switch-status {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .switch-toggle {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 24px;
+        }
+
+        .switch-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #1976d2;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(16px);
+        }
+
+        .anonymous-active {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+        }
+
+        .anonymous-active .switch-text,
+        .anonymous-active .switch-status {
+            color: white;
+        }
+
+        .anonymous-active .slider {
+            background-color: rgba(255,255,255,0.3);
+        }
+
+        .anonymous-active input:checked + .slider {
+            background-color: white;
+        }
+
+        .anonymous-active input:checked + .slider:before {
+            background-color: #ff9800;
+        }
+
+        /* Controls Row Styles */
+        .controls-row {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            justify-content: space-between;
+        }
+
+        /* Create Forum Button Styles */
+        .create-forum-section {
+            margin-bottom: 0;
+        }
+
+        .create-forum-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .create-forum-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+            background: linear-gradient(135deg, #43a047, #4caf50);
+        }
+
+        .create-forum-btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-icon {
+            font-size: 1.1rem;
+        }
+
+        /* Dropdown menu */
+        .nav-links li {
+            position: relative;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-links li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a:hover {
+            background-color: #f5f5f5;
+            color: #1976d2;
+        }
+
+        .dropdown-icon {
+            font-size: 0.8rem;
+            margin-left: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .forum-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-filters {
+                flex-direction: column;
+            }
+            
+            .search-box {
+                min-width: auto;
+            }
+
+            .controls-row {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">⚖️ Legal Youth</a>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="#forum">Forum <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown">
+                        <a href="user-forums.html">User Forums</a>
+                        <a href="#your-posts">Your Posts</a>
+                        <a href="#messages">Chat Box</a>
+                        <a href="#notifications">Notifications</a>
+                        <a href="#forum-stats">Forum Stats</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#quizzes">Quizzes <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown">
+                        <a href="quiz-library.html">Quiz Library</a>
+                        <a href="#rank">Your Rank & Points</a>
+                        <a href="#leaderboard">Leaderboard</a>
+                        <a href="#live-competition">Live Quiz Competition</a>
+                        <a href="#achievements">Achievements</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#resources">Resources <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown">
+                        <a href="#hot-cases">Hot Cases</a>
+                        <a href="#legal-books">Legal Books</a>
+                        <a href="#lawyer-videos">Lawyer Videos</a>
+                        <a href="#case-studies">Case Studies</a>
+                        <a href="#legal-forms">Legal Forms</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#tools">Tools <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown">
+                        <a href="#legal-calculate">Legal Calculate</a>
+                        <a href="#rights-checklist">Rights Checklist</a>
+                        <a href="#case-timeline">Case Timeline</a>
+                        <a href="#book-lawyer">Book Volunteer Lawyer</a>
+                        <a href="#legal-templates">Legal Templates</a>
+                    </div>
+                </li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator">></span>
+        <span id="current-page">User Forums</span>
+    </div>
+
+    <main class="container">
+        <div class="page-title">
+            <h1>User Forums</h1>
+            <p>Connect with others and discuss legal topics in our community forums</p>
+        </div>
+
+        <div class="search-filters">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search forums..." onkeyup="filterForums()">
+            </div>
+            <select class="filter-select" id="categoryFilter" onchange="filterForums()">
+                <option value="all">All Categories</option>
+                <option value="Employment">Employment</option>
+                <option value="Housing">Housing</option>
+                <option value="Education">Education</option>
+                <option value="Criminal Justice">Criminal Justice</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="LGBTQ+ Rights">LGBTQ+ Rights</option>
+                <option value="Immigration">Immigration</option>
+                <option value="Digital Rights">Digital Rights</option>
+            </select>
+        </div>
+
+        <!-- Browse Mode Switch and Create Forum Button -->
+        <div class="controls-row">
+            <!-- Browse Mode Switch -->
+            <div class="anonymous-switch" id="anonymousSwitch">
+                <div class="switch-info">
+                    <div class="switch-icon">👤</div>
+                    <div>
+                        <div class="switch-text">Browse Mode</div>
+                        <div class="switch-status" id="switchStatus">Real Name</div>
+                    </div>
+                </div>
+                <label class="switch-toggle">
+                    <input type="checkbox" id="anonymousToggle" onchange="toggleAnonymous()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <!-- Create Forum Button -->
+            <div class="create-forum-section">
+                <button class="create-forum-btn" onclick="createForum()">
+                    <span class="btn-icon">➕</span>
+                    Create New Forum
+                </button>
+            </div>
+        </div>
+
+        <div class="forum-grid" id="forumGrid">
+            <!-- Forum cards will be populated by JavaScript -->
+        </div>
+    </main>
+
+    <script>
+        const forums = [
+            {
+                id: '1',
+                title: 'Employment Rights & Workplace Issues',
+                description: 'Discuss workplace rights, discrimination, harassment, and employment law questions.',
+                category: 'Employment',
+                memberCount: 1247,
+                topicCount: 89,
+                postCount: 1243,
+                lastActivity: '2 hours ago',
+                isActive: true,
+                tags: ['employment', 'workplace', 'rights'],
+                moderators: ['Sarah Johnson', 'Mike Chen']
+            },
+            {
+                id: '2',
+                title: 'Housing & Tenant Rights',
+                description: 'Get help with housing issues, eviction defense, and tenant rights.',
+                category: 'Housing',
+                memberCount: 892,
+                topicCount: 156,
+                postCount: 2103,
+                lastActivity: '1 day ago',
+                isActive: true,
+                tags: ['housing', 'tenant', 'eviction'],
+                moderators: ['Alex Rodriguez', 'Emma Wilson']
+            },
+            {
+                id: '3',
+                title: 'Education Rights & School Issues',
+                description: 'Discuss educational rights, IEPs, school discipline, and academic accommodations.',
+                category: 'Education',
+                memberCount: 1567,
+                topicCount: 203,
+                postCount: 3456,
+                lastActivity: '3 hours ago',
+                isActive: true,
+                tags: ['education', 'IEP', 'school'],
+                moderators: ['Dr. Lisa Park', 'James Thompson']
+            },
+            {
+                id: '4',
+                title: 'Criminal Justice & Police Interaction',
+                description: 'Know your rights when dealing with law enforcement and the criminal justice system.',
+                category: 'Criminal Justice',
+                memberCount: 2341,
+                topicCount: 312,
+                postCount: 5678,
+                lastActivity: '5 hours ago',
+                isActive: true,
+                tags: ['criminal', 'police', 'rights'],
+                moderators: ['Marcus Davis', 'Jennifer Lee']
+            },
+            {
+                id: '5',
+                title: 'Healthcare & Medical Rights',
+                description: 'Discuss healthcare access, medical privacy, and patient rights.',
+                category: 'Healthcare',
+                memberCount: 678,
+                topicCount: 45,
+                postCount: 789,
+                lastActivity: '1 week ago',
+                isActive: true,
+                tags: ['healthcare', 'medical', 'privacy'],
+                moderators: ['Dr. Sarah Kim', 'Robert Martinez']
+            },
+            {
+                id: '6',
+                title: 'LGBTQ+ Rights & Support',
+                description: 'Safe space for LGBTQ+ youth to discuss rights, discrimination, and resources.',
+                category: 'LGBTQ+ Rights',
+                memberCount: 1892,
+                topicCount: 267,
+                postCount: 4231,
+                lastActivity: '4 hours ago',
+                isActive: true,
+                tags: ['LGBTQ+', 'discrimination', 'support'],
+                moderators: ['Taylor Smith', 'Jordan Brown']
+            },
+            {
+                id: '7',
+                title: 'Immigration & DACA Support',
+                description: 'Resources and support for immigrant youth and DACA recipients.',
+                category: 'Immigration',
+                memberCount: 1456,
+                topicCount: 178,
+                postCount: 2987,
+                lastActivity: '6 hours ago',
+                isActive: true,
+                tags: ['immigration', 'DACA', 'support'],
+                moderators: ['Maria Garcia', 'David Kim']
+            },
+            {
+                id: '8',
+                title: 'Digital Privacy & Online Safety',
+                description: 'Discuss online privacy, social media rights, and digital safety.',
+                category: 'Digital Rights',
+                memberCount: 1123,
+                topicCount: 134,
+                postCount: 2156,
+                lastActivity: '1 day ago',
+                isActive: true,
+                tags: ['digital', 'privacy', 'online'],
+                moderators: ['Chris Johnson', 'Amanda White']
+            }
+        ];
+
+        function formatNumber(num) {
+            if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'k';
+            }
+            return num.toString();
+        }
+
+        function renderForums(forumsToRender) {
+            const grid = document.getElementById('forumGrid');
+            grid.innerHTML = '';
+
+            if (forumsToRender.length === 0) {
+                grid.innerHTML = `
+                    <div style="text-align: center; grid-column: 1 / -1; padding: 3rem;">
+                        <h3>No forums found matching your criteria</h3>
+                        <p>Try adjusting your search or filters</p>
+                    </div>
+                `;
+                return;
+            }
+
+            forumsToRender.forEach(forum => {
+                const card = document.createElement('div');
+                card.className = 'forum-card';
+                card.innerHTML = `
+                    <div class="forum-header">
+                        <div class="forum-title">${forum.title}</div>
+                        <div class="forum-description">${forum.description}</div>
+                        
+                        <div class="forum-meta">
+                            <span class="forum-category">${forum.category}</span>
+                            <span class="forum-status status-${forum.isActive ? 'active' : 'inactive'}">
+                                ${forum.isActive ? 'Active' : 'Inactive'}
+                            </span>
+                        </div>
+                        
+                        <div class="forum-stats">
+                            <div class="stat">
+                                <div class="stat-value">${formatNumber(forum.memberCount)}</div>
+                                <div class="stat-label">Members</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">${formatNumber(forum.topicCount)}</div>
+                                <div class="stat-label">Topics</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">${formatNumber(forum.postCount)}</div>
+                                <div class="stat-label">Posts</div>
+                            </div>
+                        </div>
+                        
+                        <div class="forum-tags">
+                            ${forum.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                        
+                        <div class="forum-activity">
+                            <span>📝 Last activity: ${forum.lastActivity}</span>
+                        </div>
+                        
+                        <div class="moderators">
+                            <div class="moderators-title">Moderators:</div>
+                            <div class="moderator-list">
+                                ${forum.moderators.map(mod => `<span class="moderator">${mod}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="forum-actions">
+                        <button class="join-forum-btn" onclick="joinForum('${forum.id}')">
+                            Join Forum
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterForums() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const selectedCategory = document.getElementById('categoryFilter').value;
+
+            const filtered = forums.filter(forum => {
+                const matchesSearch = forum.title.toLowerCase().includes(searchQuery) ||
+                                    forum.description.toLowerCase().includes(searchQuery) ||
+                                    forum.tags.some(tag => tag.toLowerCase().includes(searchQuery));
+                const matchesCategory = selectedCategory === 'all' || forum.category === selectedCategory;
+                
+                return matchesSearch && matchesCategory;
+            });
+
+            renderForums(filtered);
+        }
+
+        function joinForum(forumId) {
+            alert(`Joining forum: ${forumId}\n\nThis would take you to the forum discussion page.`);
+        }
+
+        // Anonymous toggle functionality
+        function toggleAnonymous() {
+            const toggle = document.getElementById('anonymousToggle');
+            const switchStatus = document.getElementById('switchStatus');
+            const anonymousSwitch = document.getElementById('anonymousSwitch');
+            const switchIcon = document.querySelector('.switch-icon');
+            
+            if (toggle.checked) {
+                // Anonymous mode
+                switchStatus.textContent = 'Anonymous';
+                anonymousSwitch.classList.add('anonymous-active');
+                switchIcon.textContent = '🕵️';
+                alert('🕵️ Anonymous Mode Activated\n\nYour posts will appear as "Anonymous User" to protect your privacy.\n\nNote: Moderators can still see your real identity for safety purposes.');
+            } else {
+                // Real name mode
+                switchStatus.textContent = 'Real Name';
+                anonymousSwitch.classList.remove('anonymous-active');
+                switchIcon.textContent = '👤';
+                alert('👤 Real Name Mode Activated\n\nYour posts will appear with your real account name.');
+            }
+        }
+
+        // Create Forum functionality
+        function createForum() {
+            alert('📝 Create New Forum\n\nThis would open a form to create a new forum with:\n\n• Forum Title\n• Description\n• Category Selection\n• Privacy Settings\n• Moderator Assignment\n\nYou would need appropriate permissions to create forums.');
+        }
+
+        // Initialize the page
+        renderForums(forums);
+    </script>
+</body>
+</html> 

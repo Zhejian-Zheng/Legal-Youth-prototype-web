@@ -30,6 +30,8 @@ import {
   Info as InfoIcon,
   Accessibility as AccessibilityIcon,
   KeyboardArrowUp as ArrowUpIcon,
+  School as SchoolIcon,
+  Group as GroupIcon,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -53,6 +55,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     { text: 'Categories', icon: <CategoryIcon />, path: '/category/employment' },
     { text: 'Resources', icon: <LibraryIcon />, path: '/resources' },
     { text: 'Tools', icon: <ToolsIcon />, path: '/tools' },
+    { text: 'Quiz Library', icon: <SchoolIcon />, path: '/quizzes' },
+    { text: 'User Forums', icon: <GroupIcon />, path: '/forums' },
     { text: 'Legal Aid Map', icon: <MapIcon />, path: '/legal-aid-map' },
     { text: 'Forum', icon: <ForumIcon />, path: '/forum' },
     { text: 'About Us', icon: <InfoIcon />, path: '/about' },
