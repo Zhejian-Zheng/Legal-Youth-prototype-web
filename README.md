@@ -11,9 +11,7 @@ http://localhost:8080/index.html
 ```bash
 #First time:
 git pull
-git checkout -b prototype-2/new-ai-feature-and-interaction-redesign
 
-#Otherwise:
 git checkout prototype-2/new-ai-feature-and-interaction-redesign
 
 #then:
