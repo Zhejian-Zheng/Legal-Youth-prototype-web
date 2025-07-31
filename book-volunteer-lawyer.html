@@ -375,6 +375,21 @@
             margin-bottom: 20px;
         }
 
+        .availability-list {
+            margin-top: 10px;
+        }
+
+        .availability-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .availability-item:last-child {
+            border-bottom: none;
+        }
+
         .availability-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -389,27 +404,20 @@
             padding: 8px 12px;
             text-align: center;
             font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .time-slot:hover {
-            background: #1976d2;
-            color: white;
-            border-color: #1976d2;
+            cursor: default;
         }
 
         .time-slot.available {
-            background: #d4edda;
-            border-color: #c3e6cb;
-            color: #155724;
+            background: #e8f5e8;
+            border-color: #c8e6c9;
+            color: #2e7d32;
         }
 
         .time-slot.booked {
-            background: #f8d7da;
-            border-color: #f5c6cb;
-            color: #721c24;
-            cursor: not-allowed;
+            background: #ffebee;
+            border-color: #ffcdd2;
+            color: #c62828;
+            cursor: default;
         }
 
         .lawyer-actions {
@@ -612,53 +620,53 @@
             </div>
             <ul class="nav-links">
                 <li>
-                    <a href="#forum">Forum <span class="dropdown-icon">▼</span></a>
+                    <a href="index.html#forum">Forum <span class="dropdown-icon">▼</span></a>
                     <div class="dropdown">
                         <a href="user-forums.html">User Forums</a>
-                        <a href="#your-posts">Your Posts</a>
-                        <a href="#messages">Chat Box</a>
-                        <a href="#notifications">Notifications</a>
-                        <a href="#forum-stats">Forum Stats</a>
+                        <a href="index.html#your-posts">Your Posts</a>
+                        <a href="index.html#messages">Chat Box</a>
+                        <a href="index.html#notifications">Notifications</a>
+                        <a href="index.html#forum-stats">Forum Stats</a>
                     </div>
                 </li>
                 <li>
-                    <a href="#quizzes">Quizzes <span class="dropdown-icon">▼</span></a>
+                    <a href="index.html#quizzes">Quizzes <span class="dropdown-icon">▼</span></a>
                     <div class="dropdown">
                         <a href="quiz-library.html">Quiz Library</a>
-                        <a href="#rank">Your Rank & Points</a>
-                        <a href="#leaderboard">Leaderboard</a>
-                        <a href="#live-competition">Live Quiz Competition</a>
-                        <a href="#achievements">Achievements</a>
+                        <a href="index.html#rank">Your Rank & Points</a>
+                        <a href="index.html#leaderboard">Leaderboard</a>
+                        <a href="index.html#live-competition">Live Quiz Competition</a>
+                        <a href="index.html#achievements">Achievements</a>
                     </div>
                 </li>
                 <li>
-                    <a href="#resources">Resources <span class="dropdown-icon">▼</span></a>
+                    <a href="index.html#resources">Resources <span class="dropdown-icon">▼</span></a>
                     <div class="dropdown">
-                        <a href="#hot-cases">Hot Cases</a>
-                        <a href="#legal-books">Legal Books</a>
-                        <a href="#lawyer-videos">Lawyer Videos</a>
-                        <a href="#case-studies">Case Studies</a>
-                        <a href="#legal-forms">Legal Forms</a>
+                        <a href="index.html#hot-cases">Hot Cases</a>
+                        <a href="index.html#legal-books">Legal Books</a>
+                        <a href="index.html#lawyer-videos">Lawyer Videos</a>
+                        <a href="index.html#case-studies">Case Studies</a>
+                        <a href="resource-library.html">Legal Forms</a>
                     </div>
                 </li>
                 <li>
-                    <a href="#tools">Tools <span class="dropdown-icon">▼</span></a>
+                    <a href="index.html#tools">Tools <span class="dropdown-icon">▼</span></a>
                     <div class="dropdown">
-                        <a href="#legal-calculate">Legal Calculate</a>
-                        <a href="#rights-checklist">Rights Checklist</a>
-                        <a href="#case-timeline">Case Timeline</a>
-                        <a href="book-volunteer-lawyer.html">Book Volunteer Lawyer</a>
-                        <a href="#legal-templates">Legal Templates</a>
+                        <a href="index.html#calculator">Legal Calculator Collect</a>
+                        <a href="index.html#checklist">Rights Checklist</a>
+                        <a href="index.html#timeline">Case Timeline</a>
+                        <a href="interactive-tools.html">Legal Templates</a>
                     </div>
                 </li>
-                <li><a href="#about">About</a></li>
+                <li><a href="book-volunteer-lawyer.html" class="active">Book Volunteer Lawyer</a></li>
+                <li><a href="index.html#about">About</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Breadcrumb -->
     <div class="breadcrumb">
-        <a href="index.html">Home</a>
+        <a href="index.html">Legal Youth Homepage</a>
         <span class="separator">></span>
         <span>Book Volunteer Lawyer</span>
     </div>
@@ -959,13 +967,32 @@
 
         function createAvailabilityHTML(availability) {
             const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-            let html = '<div class="availability-grid">';
+            let html = '<div class="availability-list">';
             
             days.forEach(day => {
-                if (availability[day]) {
-                    availability[day].forEach(time => {
-                        html += `<div class="time-slot available">${day}<br>${time}</div>`;
+                if (availability[day] && availability[day].length > 0) {
+                    const timeRanges = availability[day].map(time => {
+                        // Convert "9:00 AM" to "9am", "2:00 PM" to "2pm"
+                        const parts = time.match(/(\d+):(\d+)\s*(AM|PM)/i);
+                        if (parts) {
+                            let hour = parseInt(parts[1]);
+                            const isPM = parts[3].toUpperCase() === 'PM';
+                            
+                            if (isPM && hour !== 12) {
+                                hour += 12;
+                            } else if (!isPM && hour === 12) {
+                                hour = 0;
+                            }
+                            
+                            const ampm = isPM ? 'pm' : 'am';
+                            return `${hour}${ampm}`;
+                        }
+                        return time; // fallback
                     });
+                    
+                    html += `<div class="availability-item">`;
+                    html += `<strong>${day}:</strong> ${timeRanges.join(', ')}`;
+                    html += `</div>`;
                 }
             });
             
@@ -1010,13 +1037,29 @@
             timeSelect.innerHTML = '<option value="">Select a time slot</option>';
             const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
             days.forEach(day => {
-                if (currentLawyer.availability[day]) {
-                    currentLawyer.availability[day].forEach(time => {
-                        const option = document.createElement('option');
-                        option.value = `${day} ${time}`;
-                        option.textContent = `${day} ${time}`;
-                        timeSelect.appendChild(option);
+                if (currentLawyer.availability[day] && currentLawyer.availability[day].length > 0) {
+                    const timeRanges = currentLawyer.availability[day].map(time => {
+                        const parts = time.match(/(\d+):(\d+)\s*(AM|PM)/i);
+                        if (parts) {
+                            let hour = parseInt(parts[1]);
+                            const isPM = parts[3].toUpperCase() === 'PM';
+                            
+                            if (isPM && hour !== 12) {
+                                hour += 12;
+                            } else if (!isPM && hour === 12) {
+                                hour = 0;
+                            }
+                            
+                            const ampm = isPM ? 'pm' : 'am';
+                            return `${hour}${ampm}`;
+                        }
+                        return time; // fallback
                     });
+                    
+                    const option = document.createElement('option');
+                    option.value = `${day} ${timeRanges.join(', ')}`;
+                    option.textContent = `${day}: ${timeRanges.join(', ')}`;
+                    timeSelect.appendChild(option);
                 }
             });
             

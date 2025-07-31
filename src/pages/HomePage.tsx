@@ -243,26 +243,58 @@ const HomePage: React.FC = () => {
                 </Box>
 
                 <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    onClick={() => navigate('/tools')}
-                    sx={{
-                      backgroundColor: 'white',
-                      color: 'primary.main',
-                      '&:hover': { backgroundColor: 'grey.100' },
-                    }}
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    Interactive Tools
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    onClick={() => navigate('/resources')}
-                    sx={{ borderColor: 'white', color: 'white' }}
+                    <Button
+                      variant="contained"
+                      size="large"
+                      onClick={() => navigate('/interactive-tools')}
+                      startIcon={<SchoolIcon />}
+                      sx={{
+                        backgroundColor: 'white',
+                        color: 'primary.main',
+                        px: 4,
+                        py: 1.5,
+                        fontSize: '1.1rem',
+                        fontWeight: 'bold',
+                        '&:hover': { 
+                          backgroundColor: 'grey.100',
+                          transform: 'translateY(-2px)',
+                        },
+                        boxShadow: 3,
+                      }}
+                    >
+                      Interactive Tools
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    Resource Library
-                  </Button>
+                    <Button
+                      variant="outlined"
+                      size="large"
+                      onClick={() => navigate('/resource-library')}
+                      startIcon={<InfoIcon />}
+                      sx={{ 
+                        borderColor: 'white', 
+                        color: 'white',
+                        px: 4,
+                        py: 1.5,
+                        fontSize: '1.1rem',
+                        fontWeight: 'bold',
+                        '&:hover': { 
+                          backgroundColor: 'rgba(255,255,255,0.1)',
+                          borderColor: 'white',
+                          transform: 'translateY(-2px)',
+                        },
+                      }}
+                    >
+                      Resource Library
+                    </Button>
+                  </motion.div>
                 </Box>
               </motion.div>
             </Grid>
@@ -441,6 +473,140 @@ const HomePage: React.FC = () => {
                 </motion.div>
               </Grid>
             ))}
+          </Grid>
+        </Box>
+
+        {/* Tools Comparison Section */}
+        <Box sx={{ mb: 6 }}>
+          <Typography variant="h3" component="h2" sx={{ mb: 4, textAlign: 'center' }}>
+            Choose Your Legal Support
+          </Typography>
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={6}>
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Card
+                  sx={{
+                    height: '100%',
+                    p: 3,
+                    textAlign: 'center',
+                    background: 'linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)',
+                    color: 'white',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s, box-shadow 0.2s',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 8px 25px rgba(25, 118, 210, 0.3)',
+                    },
+                  }}
+                  onClick={() => navigate('/resource-library')}
+                >
+                  <SchoolIcon sx={{ fontSize: 60, mb: 2 }} />
+                  <Typography variant="h4" component="h3" sx={{ mb: 2, fontWeight: 'bold' }}>
+                    Resource Library
+                  </Typography>
+                  <Typography variant="body1" sx={{ mb: 3, opacity: 0.9 }}>
+                    Download ready-to-use legal templates, infographics, and educational videos. 
+                    Perfect for immediate access to legal documents and guides.
+                  </Typography>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 3 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <CheckIcon />
+                      <Typography variant="body2">Instant downloads</Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <CheckIcon />
+                      <Typography variant="body2">Ready-to-use templates</Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <CheckIcon />
+                      <Typography variant="body2">Visual guides & infographics</Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <CheckIcon />
+                      <Typography variant="body2">Educational videos</Typography>
+                    </Box>
+                  </Box>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    sx={{
+                      backgroundColor: 'white',
+                      color: 'primary.main',
+                      '&:hover': { backgroundColor: 'grey.100' },
+                    }}
+                  >
+                    Browse Resources
+                  </Button>
+                </Card>
+              </motion.div>
+            </Grid>
+            
+            <Grid item xs={12} md={6}>
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <Card
+                  sx={{
+                    height: '100%',
+                    p: 3,
+                    textAlign: 'center',
+                    background: 'linear-gradient(135deg, #2e7d32 0%, #66bb6a 100%)',
+                    color: 'white',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s, box-shadow 0.2s',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 8px 25px rgba(46, 125, 50, 0.3)',
+                    },
+                  }}
+                  onClick={() => navigate('/interactive-tools')}
+                >
+                  <BuildIcon sx={{ fontSize: 60, mb: 2 }} />
+                  <Typography variant="h4" component="h3" sx={{ mb: 2, fontWeight: 'bold' }}>
+                    Interactive Tools
+                  </Typography>
+                  <Typography variant="body1" sx={{ mb: 3, opacity: 0.9 }}>
+                    Take quizzes to test your knowledge and follow step-by-step workflows 
+                    to create customized legal documents for your specific situation.
+                  </Typography>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 3 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <CheckIcon />
+                      <Typography variant="body2">Interactive quizzes</Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <CheckIcon />
+                      <Typography variant="body2">Guided workflows</Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <CheckIcon />
+                      <Typography variant="body2">Customized solutions</Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <CheckIcon />
+                      <Typography variant="body2">Step-by-step guidance</Typography>
+                    </Box>
+                  </Box>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    sx={{
+                      backgroundColor: 'white',
+                      color: 'success.main',
+                      '&:hover': { backgroundColor: 'grey.100' },
+                    }}
+                  >
+                    Start Exploring
+                  </Button>
+                </Card>
+              </motion.div>
+            </Grid>
           </Grid>
         </Box>
 

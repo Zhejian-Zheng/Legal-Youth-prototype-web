@@ -10,6 +10,9 @@ import CategoryPage from './pages/CategoryPage';
 import ArticlePage from './pages/ArticlePage';
 import ResourceLibrary from './pages/ResourceLibrary';
 import InteractiveTools from './pages/InteractiveTools';
+import ResourceLibraryPage from './pages/ResourceLibraryPage';
+import InteractiveToolsPage from './pages/InteractiveToolsPage';
+import BookVolunteerLawyer from './pages/BookVolunteerLawyer';
 import AboutUs from './pages/AboutUs';
 import LegalAidMap from './pages/LegalAidMap';
 import Forum from './pages/Forum';
@@ -31,6 +34,9 @@ function App() {
           <Route path="/article/:articleId" element={<ArticlePage />} />
           <Route path="/resources" element={<ResourceLibrary />} />
           <Route path="/tools" element={<InteractiveTools />} />
+          <Route path="/resource-library" element={<ResourceLibraryPage />} />
+          <Route path="/interactive-tools" element={<InteractiveToolsPage />} />
+          <Route path="/book-volunteer-lawyer" element={<BookVolunteerLawyer />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/legal-aid-map" element={<LegalAidMap />} />
           <Route path="/forum" element={<Forum />} />
