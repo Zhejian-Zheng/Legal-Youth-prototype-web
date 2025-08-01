@@ -716,6 +716,28 @@
                 align-items: flex-start;
             }
         }
+
+        /* Chat Button Styles */
+        .chat-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 80px;
+            height: 80px;
+            background: url('images/ask_ai.png') no-repeat center;
+            background-size: contain;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
     </style>
 </head>
 <body>
@@ -796,7 +818,8 @@
                 <div class="filters-grid">
                     <div class="filter-group">
                         <label>Categories</label>
-                        <select class="filter-select" id="categoryFilter" multiple>
+                        <select class="filter-select" id="categoryFilter">
+                            <option value="all">All Categories</option>
                             <option value="Employment">Employment</option>
                             <option value="Housing">Housing</option>
                             <option value="Education">Education</option>
@@ -812,7 +835,8 @@
 
                     <div class="filter-group">
                         <label>Content Types</label>
-                        <select class="filter-select" id="typeFilter" multiple>
+                        <select class="filter-select" id="typeFilter">
+                            <option value="all">All Content Types</option>
                             <option value="article">Article</option>
                             <option value="faq">FAQ</option>
                             <option value="resource">Resource</option>
@@ -1025,8 +1049,8 @@
         // State
         let currentResults = [];
         let activeFilters = {
-            categories: [],
-            types: [],
+            categories: 'all',
+            types: 'all',
             difficulty: 'all',
             language: 'all',
             rating: 0,
@@ -1067,8 +1091,8 @@
         }
 
         function updateFilters() {
-            activeFilters.categories = Array.from(categoryFilter.selectedOptions).map(option => option.value);
-            activeFilters.types = Array.from(typeFilter.selectedOptions).map(option => option.value);
+            activeFilters.categories = categoryFilter.value;
+            activeFilters.types = typeFilter.value;
             activeFilters.difficulty = difficultyFilter.value;
             activeFilters.language = languageFilter.value;
             activeFilters.rating = parseFloat(ratingFilter.value);
@@ -1105,10 +1129,10 @@
 
                 // Apply filters
                 results = results.filter(result => {
-                    if (activeFilters.categories.length > 0 && !activeFilters.categories.includes(result.category)) {
+                    if (activeFilters.categories !== 'all' && result.category !== activeFilters.categories) {
                         return false;
                     }
-                    if (activeFilters.types.length > 0 && !activeFilters.types.includes(result.type)) {
+                    if (activeFilters.types !== 'all' && result.type !== activeFilters.types) {
                         return false;
                     }
                     if (activeFilters.difficulty !== 'all' && result.difficulty !== activeFilters.difficulty) {
@@ -1231,6 +1255,14 @@
                 }
             });
         });
+
+        // AI Assistant function
+        function openAIChat() {
+            window.location.href = 'ask-ai.html';
+        }
     </script>
+
+    <!-- Chat Button -->
+    <button class="chat-button" title="Ask our AI Legal Assistant" onclick="openAIChat()"></button>
 </body>
 </html> 

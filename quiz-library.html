@@ -466,6 +466,28 @@
                 justify-content: center;
             }
         }
+
+        /* Chat Button Styles */
+        .chat-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 80px;
+            height: 80px;
+            background: url('images/ask_ai.png') no-repeat center;
+            background-size: contain;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
     </style>
 </head>
 <body>
@@ -815,6 +837,14 @@
 
         // Initialize the page
         renderQuizzes(quizzes);
+
+        // AI Assistant function
+        function openAIChat() {
+            window.location.href = 'ask-ai.html';
+        }
     </script>
+
+    <!-- Chat Button -->
+    <button class="chat-button" title="Ask our AI Legal Assistant" onclick="openAIChat()"></button>
 </body>
 </html> 
