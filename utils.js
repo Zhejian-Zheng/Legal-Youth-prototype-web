@@ -6,7 +6,7 @@ const DemoMessages = {
     aiAssistant: '🤖 AI Legal Assistant\n\nWelcome! I can help you with:\n• Legal questions and advice\n• Document explanations\n• Rights clarification\n• Process guidance\n\nWhat would you like to know about?',
     login: '🔐 Login\n\nUsername/Email: [Enter your credentials]\nPassword: [Enter your password]\n\nRemember me: ☑️\nForgot password? Click here',
     signup: '📝 Sign Up\n\nCreate your Legal Youth account:\n\nFull Name: [Enter your name]\nEmail: [Enter your email]\nPassword: [Create password]\nConfirm Password: [Confirm password]\n\nI agree to Terms of Service ☑️',
-    forum: '💬 Community Forum\n\nJoin discussions about legal topics, share experiences, and connect with others who are navigating similar legal situations.',
+    forum: 'Community Forum\n\nJoin discussions about legal topics, share experiences, and connect with others who are navigating similar legal situations.',
     quizzes: '🎯 Legal Quizzes\n\nTest your knowledge with interactive quizzes:\n\n• Employment Rights Quiz\n• Tenant Rights Quiz\n• Consumer Rights Quiz\n• Family Law Quiz\n• Education Rights Quiz',
     templates: '📄 Legal Templates\n\nDownload free legal document templates:\n\n• Employment Contract Template\n• Tenant Rights Letter Template\n• Consumer Complaint Template\n• Wage Claim Form Template\n• Eviction Response Template',
     lawyer: '👨‍💼 Book Volunteer Lawyer\n\nSchedule a free consultation with a volunteer lawyer:\n\n• Employment Law Consultation\n• Housing Rights Consultation\n• Family Law Consultation\n• Consumer Rights Consultation\n• Education Rights Consultation',

@@ -247,7 +247,7 @@ const Footer: React.FC = () => {
           }}
         >
           <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
-            🚨 Emergency Legal Help
+            Emergency Legal Help
           </Typography>
           <Typography variant="body2">
             If you're in immediate legal trouble, call our 24/7 hotline:{' '}

@@ -128,7 +128,7 @@ const AboutUs: React.FC = () => {
         {/* Emergency Contact */}
         <Alert severity="error" sx={{ mb: 4 }}>
           <Typography variant="h6" sx={{ mb: 1 }}>
-            🚨 Emergency Legal Help Available 24/7
+            Emergency Legal Help Available 24/7
           </Typography>
           <Typography variant="body1" sx={{ mb: 2 }}>
             If you're facing an immediate legal crisis, don't wait. Our emergency hotline is available 24/7.
