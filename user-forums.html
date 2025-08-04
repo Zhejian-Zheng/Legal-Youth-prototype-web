@@ -43,6 +43,14 @@
             gap: 0.5rem;
         }
 
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: url('images/legal_icon.png') no-repeat center;
+            background-size: contain;
+            flex-shrink: 0;
+        }
+
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -535,7 +543,10 @@
     <header class="header">
         <nav class="nav">
             <div class="logo">
-                <a href="index.html" style="text-decoration: none; color: inherit;">⚖️ Legal Youth</a>
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <div class="logo-icon"></div>
+                    Legal Youth
+                </a>
             </div>
             <ul class="nav-links">
                 <li>

@@ -48,6 +48,14 @@
             transition: all 0.3s;
         }
 
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: url('images/legal_icon.png') no-repeat center;
+            background-size: contain;
+            flex-shrink: 0;
+        }
+
         .logo:hover {
             transform: scale(1.05);
             opacity: 0.9;
@@ -280,8 +288,10 @@
         .search-icon {
             position: absolute;
             left: 1rem;
-            font-size: 1.2rem;
-            color: #666;
+            width: 20px;
+            height: 20px;
+            background: url('images/search.png') no-repeat center;
+            background-size: contain;
             z-index: 1;
         }
 
@@ -491,6 +501,18 @@
             justify-content: center;
             margin: 0 auto 1rem;
             font-size: 1.5rem;
+        }
+
+        .feature-icon.search-icon {
+            background: url('images/search.png') no-repeat center;
+            background-size: 50%;
+            background-color: #1976d2;
+        }
+
+        .feature-icon.legal-icon {
+            background: url('images/legal_icon.png') no-repeat center;
+            background-size: 50%;
+            background-color: #1976d2;
         }
 
         .explain-btn {
@@ -895,7 +917,8 @@
     <header class="header">
         <nav class="nav">
             <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
-                ⚖️ Legal Youth
+                <div class="logo-icon"></div>
+                Legal Youth
             </div>
             <ul class="nav-links">
                 <li>
@@ -960,7 +983,7 @@
             
             <div class="search-bar">
                 <div class="search-container">
-                    <span class="search-icon">🔍</span>
+                    <div class="search-icon"></div>
                     <input type="text" class="search-input" placeholder="Search for legal topics, articles, or resources...">
                 </div>
             </div>
@@ -1038,7 +1061,7 @@
         <h2 style="text-align: center; margin-bottom: 2rem; color: #1976d2;">Key Features</h2>
         <div class="features">
             <div class="feature-card">
-                <div class="feature-icon">🔍</div>
+                <div class="feature-icon search-icon"></div>
                 <h3>Advanced Search</h3>
                 <p>Comprehensive search functionality with legal topic filtering and resource categorization.</p>
                 <button class="explain-btn" onclick="showFeatureExplanation('search')">Learn More</button>
@@ -1050,7 +1073,7 @@
                 <button class="explain-btn" onclick="showFeatureExplanation('library')">Learn More</button>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">⚖️</div>
+                <div class="feature-icon legal-icon"></div>
                 <h3>Legal Templates</h3>
                 <p>Step-by-step guidance and document templates for common legal procedures and processes.</p>
                 <button class="explain-btn" onclick="showFeatureExplanation('templates')">Learn More</button>

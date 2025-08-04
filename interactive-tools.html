@@ -48,6 +48,14 @@
             transition: all 0.3s;
         }
 
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: url('images/legal_icon.png') no-repeat center;
+            background-size: contain;
+            flex-shrink: 0;
+        }
+
         .logo:hover {
             transform: scale(1.05);
             opacity: 0.9;
@@ -497,7 +505,8 @@
     <header class="header">
         <nav class="nav">
             <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
-                ⚖️ Legal Youth
+                <div class="logo-icon"></div>
+                Legal Youth
             </div>
             <ul class="nav-links">
                 <li>
