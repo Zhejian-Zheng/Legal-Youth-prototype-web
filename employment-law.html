@@ -44,14 +44,20 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s;
         }
 
         .logo-icon {
             width: 32px;
             height: 32px;
             background: url('images/legal_icon.png') no-repeat center;
-            background-size: contain;
+            background-size: 80%;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .nav-links {
@@ -542,11 +548,9 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <div class="logo">
-                <a href="index.html" style="text-decoration: none; color: inherit;">
-                    <div class="logo-icon"></div>
-                    Legal Youth
-                </a>
+            <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                <div class="logo-icon"></div>
+                Legal Youth
             </div>
             <ul class="nav-links">
                 <li>
