@@ -273,9 +273,20 @@
             opacity: 0.9;
         }
 
-        .search-bar {
-            max-width: 500px;
+        .search-section {
+            max-width: 900px;
             margin: 0 auto 2rem;
+        }
+
+        .search-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-bar {
+            flex: 1;
         }
 
         .search-container {
@@ -283,28 +294,138 @@
             display: flex;
             align-items: center;
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
             overflow: hidden;
+        }
+
+        .advanced-search-btn {
+            background: white;
+            color: #1976d2;
+            padding: 1.5rem 2rem;
+            border: 2px solid #1976d2;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .advanced-search-btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-history {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        .search-history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-history h4 {
+            margin: 0;
+            color: #1976d2;
+            font-size: 1rem;
+        }
+
+        .clear-history-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .clear-history-btn:hover {
+            background: #ff5252;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+        }
+
+        .search-history-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .search-history-item {
+            background: #f0f8ff;
+            color: #1976d2;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #e3f2fd;
+        }
+
+        .search-history-item:hover {
+            background: #1976d2;
+            color: white;
+            transform: translateY(-1px);
         }
 
         .search-icon {
             position: absolute;
-            left: 1rem;
-            width: 20px;
-            height: 20px;
+            left: 1.5rem;
+            width: 24px;
+            height: 24px;
             background: url('images/search.png') no-repeat center;
             background-size: contain;
             z-index: 1;
         }
 
         .search-input {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
+            flex: 1;
+            padding: 1.5rem 1.5rem 1.5rem 4rem;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
+            border-radius: 12px;
+            font-size: 1.3rem;
             background: transparent;
+        }
+
+        .search-btn {
+            background: #e0e0e0;
+            color: #424242;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 60px;
+            margin-right: 0.5rem;
+        }
+
+        .search-btn:hover {
+            background: #d0d0d0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-btn:active {
+            transform: translateY(0);
         }
 
         .search-input:focus {
@@ -992,14 +1113,27 @@
             <h1>Your Legal Rights, Simplified</h1>
             <p>Get the legal information you need, when you need it. Free resources, tools, and guidance for young people.</p>
             
-            <div class="search-bar">
-                <div class="search-container">
-                    <div class="search-icon"></div>
-                    <input type="text" class="search-input" placeholder="Search for legal topics, articles, or resources...">
+            <div class="search-section">
+                <div class="search-row">
+                    <div class="search-bar">
+                        <div class="search-container">
+                            <div class="search-icon"></div>
+                            <input type="text" class="search-input" placeholder="Search for legal topics, articles, or resources..." id="mainSearchInput">
+                            <button class="search-btn" onclick="performSearchFromButton()">Search</button>
+                        </div>
+                    </div>
+                    <button class="advanced-search-btn" onclick="window.location.href='advanced-search.html'">Advanced Search</button>
+                </div>
+                <div class="search-history" id="searchHistory">
+                    <div class="search-history-header">
+                        <h4>Search History</h4>
+                        <button class="clear-history-btn" id="clearHistoryBtn" onclick="clearSearchHistory()">Clear History</button>
+                    </div>
+                    <div class="search-history-items" id="searchHistoryItems">
+                        <!-- Search history items will be populated by JavaScript -->
+                    </div>
                 </div>
             </div>
-            
-            <button class="btn" onclick="window.location.href='advanced-search.html'">Advanced Search</button>
         </div>
     </section>
 
@@ -1180,12 +1314,86 @@
     <button class="chat-button" title="Ask our AI Legal Assistant" onclick="openAIChat()"></button>
 
     <script>
-        // Simple interactivity for demo
-        document.querySelector('.search-input').addEventListener('keypress', function(e) {
+        // Search history functionality
+        let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+        const searchHistoryElement = document.getElementById('searchHistory');
+        const searchHistoryItems = document.getElementById('searchHistoryItems');
+        const mainSearchInput = document.getElementById('mainSearchInput');
+
+        // Display search history
+        function displaySearchHistory() {
+            searchHistoryItems.innerHTML = '';
+            if (searchHistory.length > 0) {
+                searchHistory.slice(0, 5).forEach(term => {
+                    const item = document.createElement('div');
+                    item.className = 'search-history-item';
+                    item.textContent = term;
+                    item.addEventListener('click', () => {
+                        mainSearchInput.value = term;
+                        performSearch(term);
+                    });
+                    searchHistoryItems.appendChild(item);
+                });
+            } else {
+                // Show empty state message
+                const emptyMessage = document.createElement('div');
+                emptyMessage.style.color = '#666';
+                emptyMessage.style.fontStyle = 'italic';
+                emptyMessage.textContent = 'No search history yet';
+                searchHistoryItems.appendChild(emptyMessage);
+            }
+        }
+
+        // Add search term to history
+        function addToSearchHistory(term) {
+            if (term.trim() && !searchHistory.includes(term.trim())) {
+                searchHistory.unshift(term.trim());
+                searchHistory = searchHistory.slice(0, 10); // Keep only last 10 searches
+                localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+                displaySearchHistory();
+            }
+        }
+
+        // Perform search
+        function performSearch(term) {
+            addToSearchHistory(term);
+            // Here you would implement the actual search functionality
+            console.log('Searching for:', term);
+            // For demo purposes, show an alert
+            alert(`Search functionality would search for: ${term}`);
+        }
+
+        // Search input event listeners
+        mainSearchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                alert('Search functionality would be implemented here');
+                const searchTerm = this.value.trim();
+                if (searchTerm) {
+                    performSearch(searchTerm);
+                }
             }
         });
+
+        // Search button click handler
+        function performSearchFromButton() {
+            const searchTerm = mainSearchInput.value.trim();
+            if (searchTerm) {
+                performSearch(searchTerm);
+            }
+        }
+
+        // Search history is always visible now, so we don't need focus/blur handlers
+
+        // Clear search history function
+        function clearSearchHistory() {
+            if (confirm('Are you sure you want to clear your search history?')) {
+                searchHistory = [];
+                localStorage.removeItem('searchHistory');
+                displaySearchHistory();
+            }
+        }
+
+        // Initialize search history display
+        displaySearchHistory();
 
         document.querySelector('.chat-button').addEventListener('click', function() {
             window.location.href = 'ask-ai.html';
