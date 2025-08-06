@@ -773,10 +773,11 @@
                     <label>Available Date</label>
                     <select class="filter-select" id="dateFilter">
                         <option value="all">Any Date</option>
-                        <option value="today">Today</option>
-                        <option value="tomorrow">Tomorrow</option>
-                        <option value="this-week">This Week</option>
-                        <option value="next-week">Next Week</option>
+                        <option value="july-8">July 8</option>
+                        <option value="july-9">July 9</option>
+                        <option value="july-10">July 10</option>
+                        <option value="july-11">July 11</option>
+                        <option value="july-12">July 12</option>
                     </select>
                 </div>
                 <div class="filter-group">
@@ -797,6 +798,12 @@
                         <option value="20+">20+ years</option>
                     </select>
                 </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn btn-outline" onclick="resetAllFilters()" style="background-color: #f8f9fa; color: #6c757d; border-color: #6c757d;">
+                    <i class="fas fa-undo" style="margin-right: 8px;"></i>
+                    Reset All Filters
+                </button>
             </div>
         </div>
 
@@ -871,11 +878,11 @@
                 rating: 4.9,
                 reviews: 127,
                 availability: {
-                    "Monday": ["9:00 AM", "10:00 AM", "2:00 PM", "3:00 PM"],
-                    "Tuesday": ["9:00 AM", "11:00 AM", "4:00 PM"],
-                    "Wednesday": ["10:00 AM", "2:00 PM", "5:00 PM"],
-                    "Thursday": ["9:00 AM", "1:00 PM", "3:00 PM"],
-                    "Friday": ["10:00 AM", "2:00 PM"]
+                    "July 8": ["9:00 AM - 10:00 AM", "10:30 AM - 11:30 AM", "2:00 PM - 3:00 PM", "3:30 PM - 4:30 PM"],
+                    "July 9": ["9:00 AM - 10:00 AM", "11:00 AM - 12:00 PM", "4:00 PM - 5:00 PM"],
+                    "July 10": ["10:00 AM - 11:00 AM", "2:00 PM - 3:00 PM", "5:00 PM - 6:00 PM"],
+                    "July 11": ["9:00 AM - 10:00 AM", "1:00 PM - 2:00 PM", "3:00 PM - 4:00 PM"],
+                    "July 12": ["10:00 AM - 11:00 AM", "2:00 PM - 3:00 PM"]
                 },
                 bio: "Specialized in employment law with focus on workplace discrimination, wage disputes, and wrongful termination cases."
             },
@@ -889,11 +896,11 @@
                 rating: 4.8,
                 reviews: 89,
                 availability: {
-                    "Monday": ["1:00 PM", "3:00 PM", "6:00 PM"],
-                    "Tuesday": ["9:00 AM", "2:00 PM", "4:00 PM"],
-                    "Wednesday": ["10:00 AM", "1:00 PM", "5:00 PM"],
-                    "Thursday": ["9:00 AM", "11:00 AM", "3:00 PM"],
-                    "Friday": ["2:00 PM", "4:00 PM"]
+                    "July 8": ["1:00 PM - 2:00 PM", "3:00 PM - 4:00 PM", "6:00 PM - 7:00 PM"],
+                    "July 9": ["9:00 AM - 10:00 AM", "2:00 PM - 3:00 PM", "4:00 PM - 5:00 PM"],
+                    "July 10": ["10:00 AM - 11:00 AM", "1:00 PM - 2:00 PM", "5:00 PM - 6:00 PM"],
+                    "July 11": ["9:00 AM - 10:00 AM", "11:00 AM - 12:00 PM", "3:00 PM - 4:00 PM"],
+                    "July 12": ["2:00 PM - 3:00 PM", "4:00 PM - 5:00 PM"]
                 },
                 bio: "Expert in housing law, helping tenants understand their rights and defend against illegal evictions."
             },
@@ -907,11 +914,11 @@
                 rating: 4.7,
                 reviews: 156,
                 availability: {
-                    "Monday": ["9:00 AM", "11:00 AM", "4:00 PM"],
-                    "Tuesday": ["10:00 AM", "2:00 PM", "5:00 PM"],
-                    "Wednesday": ["9:00 AM", "1:00 PM", "3:00 PM"],
-                    "Thursday": ["10:00 AM", "2:00 PM", "6:00 PM"],
-                    "Friday": ["9:00 AM", "11:00 AM", "3:00 PM"]
+                    "July 8": ["9:00 AM - 10:00 AM", "11:00 AM - 12:00 PM", "4:00 PM - 5:00 PM"],
+                    "July 9": ["10:00 AM - 11:00 AM", "2:00 PM - 3:00 PM", "5:00 PM - 6:00 PM"],
+                    "July 10": ["9:00 AM - 10:00 AM", "1:00 PM - 2:00 PM", "3:00 PM - 4:00 PM"],
+                    "July 11": ["10:00 AM - 11:00 AM", "2:00 PM - 3:00 PM", "6:00 PM - 7:00 PM"],
+                    "July 12": ["9:00 AM - 10:00 AM", "11:00 AM - 12:00 PM", "3:00 PM - 4:00 PM"]
                 },
                 bio: "Family law specialist with extensive experience in divorce, custody, and family mediation."
             },
@@ -925,11 +932,11 @@
                 rating: 4.6,
                 reviews: 73,
                 availability: {
-                    "Monday": ["10:00 AM", "2:00 PM", "5:00 PM"],
-                    "Tuesday": ["9:00 AM", "1:00 PM", "4:00 PM"],
-                    "Wednesday": ["11:00 AM", "3:00 PM", "6:00 PM"],
-                    "Thursday": ["9:00 AM", "2:00 PM", "5:00 PM"],
-                    "Friday": ["10:00 AM", "1:00 PM", "4:00 PM"]
+                    "July 8": ["10:00 AM - 11:00 AM", "2:00 PM - 3:00 PM", "5:00 PM - 6:00 PM"],
+                    "July 9": ["9:00 AM - 10:00 AM", "1:00 PM - 2:00 PM", "4:00 PM - 5:00 PM"],
+                    "July 10": ["11:00 AM - 12:00 PM", "3:00 PM - 4:00 PM", "6:00 PM - 7:00 PM"],
+                    "July 11": ["9:00 AM - 10:00 AM", "2:00 PM - 3:00 PM", "5:00 PM - 6:00 PM"],
+                    "July 12": ["10:00 AM - 11:00 AM", "1:00 PM - 2:00 PM", "4:00 PM - 5:00 PM"]
                 },
                 bio: "Consumer rights advocate helping individuals fight unfair practices and debt collection issues."
             },
@@ -943,11 +950,11 @@
                 rating: 4.9,
                 reviews: 94,
                 availability: {
-                    "Monday": ["9:00 AM", "11:00 AM", "3:00 PM"],
-                    "Tuesday": ["10:00 AM", "2:00 PM", "5:00 PM"],
-                    "Wednesday": ["9:00 AM", "1:00 PM", "4:00 PM"],
-                    "Thursday": ["11:00 AM", "3:00 PM", "6:00 PM"],
-                    "Friday": ["9:00 AM", "2:00 PM", "5:00 PM"]
+                    "July 8": ["9:00 AM - 10:00 AM", "11:00 AM - 12:00 PM", "3:00 PM - 4:00 PM"],
+                    "July 9": ["10:00 AM - 11:00 AM", "2:00 PM - 3:00 PM", "5:00 PM - 6:00 PM"],
+                    "July 10": ["9:00 AM - 10:00 AM", "1:00 PM - 2:00 PM", "4:00 PM - 5:00 PM"],
+                    "July 11": ["11:00 AM - 12:00 PM", "3:00 PM - 4:00 PM", "6:00 PM - 7:00 PM"],
+                    "July 12": ["9:00 AM - 10:00 AM", "2:00 PM - 3:00 PM", "5:00 PM - 6:00 PM"]
                 },
                 bio: "Education law specialist focusing on student rights, discipline issues, and special education advocacy."
             },
@@ -961,11 +968,11 @@
                 rating: 4.8,
                 reviews: 112,
                 availability: {
-                    "Monday": ["10:00 AM", "2:00 PM", "5:00 PM"],
-                    "Tuesday": ["9:00 AM", "1:00 PM", "4:00 PM"],
-                    "Wednesday": ["11:00 AM", "3:00 PM", "6:00 PM"],
-                    "Thursday": ["9:00 AM", "2:00 PM", "5:00 PM"],
-                    "Friday": ["10:00 AM", "1:00 PM", "4:00 PM"]
+                    "July 8": ["10:00 AM - 11:00 AM", "2:00 PM - 3:00 PM", "5:00 PM - 6:00 PM"],
+                    "July 9": ["9:00 AM - 10:00 AM", "1:00 PM - 2:00 PM", "4:00 PM - 5:00 PM"],
+                    "July 10": ["11:00 AM - 12:00 PM", "3:00 PM - 4:00 PM", "6:00 PM - 7:00 PM"],
+                    "July 11": ["9:00 AM - 10:00 AM", "2:00 PM - 3:00 PM", "5:00 PM - 6:00 PM"],
+                    "July 12": ["10:00 AM - 11:00 AM", "1:00 PM - 2:00 PM", "4:00 PM - 5:00 PM"]
                 },
                 bio: "Immigration law expert helping families navigate visa applications and citizenship processes."
             },
@@ -979,11 +986,11 @@
                 rating: 4.7,
                 reviews: 98,
                 availability: {
-                    "Monday": ["9:00 AM", "2:00 PM", "5:00 PM"],
-                    "Tuesday": ["10:00 AM", "1:00 PM", "4:00 PM"],
-                    "Wednesday": ["9:00 AM", "11:00 AM", "3:00 PM"],
-                    "Thursday": ["10:00 AM", "2:00 PM", "6:00 PM"],
-                    "Friday": ["9:00 AM", "1:00 PM", "4:00 PM"]
+                    "July 8": ["9:00 AM - 10:00 AM", "2:00 PM - 3:00 PM", "5:00 PM - 6:00 PM"],
+                    "July 9": ["10:00 AM - 11:00 AM", "1:00 PM - 2:00 PM", "4:00 PM - 5:00 PM"],
+                    "July 10": ["9:00 AM - 10:00 AM", "11:00 AM - 12:00 PM", "3:00 PM - 4:00 PM"],
+                    "July 11": ["10:00 AM - 11:00 AM", "2:00 PM - 3:00 PM", "6:00 PM - 7:00 PM"],
+                    "July 12": ["9:00 AM - 10:00 AM", "1:00 PM - 2:00 PM", "4:00 PM - 5:00 PM"]
                 },
                 bio: "Criminal defense attorney specializing in juvenile justice and criminal law cases."
             }
@@ -1051,32 +1058,19 @@
         }
 
         function createAvailabilityHTML(availability) {
-            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+            const dates = ['July 8', 'July 9', 'July 10', 'July 11', 'July 12'];
             let html = '<div class="availability-list">';
             
-            days.forEach(day => {
-                if (availability[day] && availability[day].length > 0) {
-                    const timeRanges = availability[day].map(time => {
-                        // Convert "9:00 AM" to "9am", "2:00 PM" to "2pm"
-                        const parts = time.match(/(\d+):(\d+)\s*(AM|PM)/i);
-                        if (parts) {
-                            let hour = parseInt(parts[1]);
-                            const isPM = parts[3].toUpperCase() === 'PM';
-                            
-                            if (isPM && hour !== 12) {
-                                hour += 12;
-                            } else if (!isPM && hour === 12) {
-                                hour = 0;
-                            }
-                            
-                            const ampm = isPM ? 'pm' : 'am';
-                            return `${hour}${ampm}`;
-                        }
-                        return time; // fallback
-                    });
-                    
+            dates.forEach(date => {
+                if (availability[date] && availability[date].length > 0) {
                     html += `<div class="availability-item">`;
-                    html += `<strong>${day}:</strong> ${timeRanges.join(', ')}`;
+                    html += `<strong>${date}:</strong>`;
+                    html += `<div style="margin-top: 5px;">`;
+                    
+                    const timeSlots = availability[date].join(' <span style="color: #000; font-weight: bold; margin: 0 4px;">|</span> ');
+                    html += `<span style="color: #333; font-size: 14px; display: inline-block;">${timeSlots}</span>`;
+                    
+                    html += `</div>`;
                     html += `</div>`;
                 }
             });
@@ -1101,6 +1095,21 @@
 
             filteredLawyers = volunteerLawyers.filter(lawyer => {
                 if (specialization !== 'all' && lawyer.specialization !== specialization) return false;
+                if (date !== 'all') {
+                    // Map filter values to actual dates
+                    const dateMap = {
+                        'july-8': 'July 8',
+                        'july-9': 'July 9',
+                        'july-10': 'July 10',
+                        'july-11': 'July 11',
+                        'july-12': 'July 12'
+                    };
+                    const selectedDate = dateMap[date];
+                    // Check if lawyer has availability on the selected date
+                    if (!lawyer.availability[selectedDate] || lawyer.availability[selectedDate].length === 0) {
+                        return false;
+                    }
+                }
                 if (experience !== 'all') {
                     const expYears = parseInt(lawyer.experience);
                     if (experience === '5-10' && (expYears < 5 || expYears > 10)) return false;
@@ -1113,6 +1122,21 @@
             displayLawyers(filteredLawyers);
         }
 
+        function resetAllFilters() {
+            // Reset all filter dropdowns to their default values
+            document.getElementById('specializationFilter').value = 'all';
+            document.getElementById('dateFilter').value = 'all';
+            document.getElementById('timeFilter').value = 'all';
+            document.getElementById('experienceFilter').value = 'all';
+            
+            // Reset the filtered lawyers to show all lawyers
+            filteredLawyers = [...volunteerLawyers];
+            displayLawyers(filteredLawyers);
+            
+            // Show confirmation message
+            alert('All filters have been reset! Showing all available lawyers.');
+        }
+
         function openBookingModal(lawyerId) {
             currentLawyer = volunteerLawyers.find(l => l.id === lawyerId);
             const modal = document.getElementById('bookingModal');
@@ -1120,31 +1144,15 @@
             
             // Populate time slots
             timeSelect.innerHTML = '<option value="">Select a time slot</option>';
-            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-            days.forEach(day => {
-                if (currentLawyer.availability[day] && currentLawyer.availability[day].length > 0) {
-                    const timeRanges = currentLawyer.availability[day].map(time => {
-                        const parts = time.match(/(\d+):(\d+)\s*(AM|PM)/i);
-                        if (parts) {
-                            let hour = parseInt(parts[1]);
-                            const isPM = parts[3].toUpperCase() === 'PM';
-                            
-                            if (isPM && hour !== 12) {
-                                hour += 12;
-                            } else if (!isPM && hour === 12) {
-                                hour = 0;
-                            }
-                            
-                            const ampm = isPM ? 'pm' : 'am';
-                            return `${hour}${ampm}`;
-                        }
-                        return time; // fallback
+            const dates = ['July 8', 'July 9', 'July 10', 'July 11', 'July 12'];
+            dates.forEach(date => {
+                if (currentLawyer.availability[date] && currentLawyer.availability[date].length > 0) {
+                    currentLawyer.availability[date].forEach(timeSlot => {
+                        const option = document.createElement('option');
+                        option.value = `${date} ${timeSlot}`;
+                        option.textContent = `${date}: ${timeSlot}`;
+                        timeSelect.appendChild(option);
                     });
-                    
-                    const option = document.createElement('option');
-                    option.value = `${day} ${timeRanges.join(', ')}`;
-                    option.textContent = `${day}: ${timeRanges.join(', ')}`;
-                    timeSelect.appendChild(option);
                 }
             });
             
