@@ -33,9 +33,11 @@
             max-width: 950px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             padding: 0 1.5rem;
+            height: 60px;
+            gap: 3rem;
         }
 
         .logo {
@@ -47,6 +49,8 @@
             white-space: nowrap;
             flex-shrink: 0;
             transition: all 0.3s;
+            height: 100%;
+            line-height: 60px;
         }
 
         .logo-icon {
@@ -64,6 +68,9 @@
             display: flex;
             gap: 2rem;
             list-style: none;
+            align-items: center;
+            height: 100%;
+            margin-left: auto;
         }
 
         .nav-links a {
@@ -72,8 +79,11 @@
             padding: 0.5rem 1rem;
             border-radius: 4px;
             transition: all 0.3s;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
         }
 
         .nav-links a:hover {
@@ -145,7 +155,7 @@
             display: block;
             border-bottom: 1px solid #f0f0f0;
             transition: all 0.2s;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         .dropdown a:last-child {
@@ -349,8 +359,8 @@
         }
 
         .filters-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 20px;
             margin-bottom: 20px;
         }
@@ -379,6 +389,52 @@
             outline: none;
             border-color: #1976d2;
             box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 6px;
+            background: white;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e1e5e9;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            background: #e3f2fd;
+            border-color: #1976d2;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #1976d2;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            font-size: 16px;
+            color: #555;
+            cursor: pointer;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .checkbox-item:hover label {
+            color: #1976d2;
         }
 
         .filter-options {
@@ -833,53 +889,82 @@
                 <div class="filters-grid">
                     <div class="filter-group">
                         <label>Categories</label>
-                        <select class="filter-select" id="categoryFilter">
-                            <option value="all">All Categories</option>
-                            <option value="Employment">Employment</option>
-                            <option value="Housing">Housing</option>
-                            <option value="Education">Education</option>
-                            <option value="Family">Family</option>
-                            <option value="Consumer Rights">Consumer Rights</option>
-                            <option value="Criminal Justice">Criminal Justice</option>
-                            <option value="Immigration">Immigration</option>
-                            <option value="Healthcare">Healthcare</option>
-                            <option value="Taxes">Taxes</option>
-                            <option value="Estate Planning">Estate Planning</option>
-                        </select>
+                        <div class="checkbox-group" id="categoryCheckboxes">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-employment" value="Employment">
+                                <label for="cat-employment">Employment</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-housing" value="Housing">
+                                <label for="cat-housing">Housing</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-education" value="Education">
+                                <label for="cat-education">Education</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-family" value="Family">
+                                <label for="cat-family">Family</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-consumer" value="Consumer Rights">
+                                <label for="cat-consumer">Consumer Rights</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-criminal" value="Criminal Justice">
+                                <label for="cat-criminal">Criminal Justice</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-immigration" value="Immigration">
+                                <label for="cat-immigration">Immigration</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-healthcare" value="Healthcare">
+                                <label for="cat-healthcare">Healthcare</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-taxes" value="Taxes">
+                                <label for="cat-taxes">Taxes</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-estate" value="Estate Planning">
+                                <label for="cat-estate">Estate Planning</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cat-other" value="Other">
+                                <label for="cat-other">Other</label>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="filter-group">
                         <label>Content Types</label>
-                        <select class="filter-select" id="typeFilter">
-                            <option value="all">All Content Types</option>
-                            <option value="article">Article</option>
-                            <option value="faq">FAQ</option>
-                            <option value="resource">Resource</option>
-                            <option value="tool">Tool</option>
-                            <option value="quiz">Quiz</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label>Difficulty Level</label>
-                        <select class="filter-select" id="difficultyFilter">
-                            <option value="all">All Levels</option>
-                            <option value="beginner">Beginner</option>
-                            <option value="intermediate">Intermediate</option>
-                            <option value="advanced">Advanced</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label>Language</label>
-                        <select class="filter-select" id="languageFilter">
-                            <option value="all">All Languages</option>
-                            <option value="English">English</option>
-                            <option value="Spanish">Spanish</option>
-                            <option value="French">French</option>
-                            <option value="Chinese">Chinese</option>
-                            <option value="Arabic">Arabic</option>
-                        </select>
+                        <div class="checkbox-group" id="typeCheckboxes">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="type-article" value="article">
+                                <label for="type-article">Article</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="type-faq" value="faq">
+                                <label for="type-faq">FAQ</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="type-resource" value="resource">
+                                <label for="type-resource">Resource</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="type-tool" value="tool">
+                                <label for="type-tool">Tool</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="type-quiz" value="quiz">
+                                <label for="type-quiz">Quiz</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="type-other" value="other">
+                                <label for="type-other">Other</label>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="filter-group">
@@ -1055,19 +1140,15 @@
         const resultsCount = document.getElementById('resultsCount');
 
         // Filter elements
-        const categoryFilter = document.getElementById('categoryFilter');
-        const typeFilter = document.getElementById('typeFilter');
-        const difficultyFilter = document.getElementById('difficultyFilter');
-        const languageFilter = document.getElementById('languageFilter');
+        const categoryCheckboxes = document.getElementById('categoryCheckboxes');
+        const typeCheckboxes = document.getElementById('typeCheckboxes');
         const ratingFilter = document.getElementById('ratingFilter');
 
         // State
         let currentResults = [];
         let activeFilters = {
-            categories: 'all',
-            types: 'all',
-            difficulty: 'all',
-            language: 'all',
+            categories: [],
+            types: [],
             rating: 0,
             free: false,
             updated: false,
@@ -1084,10 +1165,8 @@
         confirmSaveBtn.addEventListener('click', saveSearch);
 
         // Filter event listeners
-        categoryFilter.addEventListener('change', updateFilters);
-        typeFilter.addEventListener('change', updateFilters);
-        difficultyFilter.addEventListener('change', updateFilters);
-        languageFilter.addEventListener('change', updateFilters);
+        categoryCheckboxes.addEventListener('change', updateFilters);
+        typeCheckboxes.addEventListener('change', updateFilters);
         ratingFilter.addEventListener('change', updateFilters);
 
         // Filter option toggles
@@ -1106,10 +1185,14 @@
         }
 
         function updateFilters() {
-            activeFilters.categories = categoryFilter.value;
-            activeFilters.types = typeFilter.value;
-            activeFilters.difficulty = difficultyFilter.value;
-            activeFilters.language = languageFilter.value;
+            // Get selected categories
+            activeFilters.categories = Array.from(categoryCheckboxes.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(checkbox => checkbox.value);
+            
+            // Get selected content types
+            activeFilters.types = Array.from(typeCheckboxes.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(checkbox => checkbox.value);
+            
             activeFilters.rating = parseFloat(ratingFilter.value);
             performSearch();
         }
@@ -1144,18 +1227,15 @@
 
                 // Apply filters
                 results = results.filter(result => {
-                    if (activeFilters.categories !== 'all' && result.category !== activeFilters.categories) {
+                    // Category filter - if categories are selected, result must match one of them
+                    if (activeFilters.categories.length > 0 && !activeFilters.categories.includes(result.category)) {
                         return false;
                     }
-                    if (activeFilters.types !== 'all' && result.type !== activeFilters.types) {
+                    // Type filter - if types are selected, result must match one of them
+                    if (activeFilters.types.length > 0 && !activeFilters.types.includes(result.type)) {
                         return false;
                     }
-                    if (activeFilters.difficulty !== 'all' && result.difficulty !== activeFilters.difficulty) {
-                        return false;
-                    }
-                    if (activeFilters.language !== 'all' && result.language !== activeFilters.language) {
-                        return false;
-                    }
+                    // Rating filter
                     if (result.rating < activeFilters.rating) {
                         return false;
                     }
@@ -1217,8 +1297,7 @@
                     
                     <div class="result-tags">
                         <span class="tag category">${result.category}</span>
-                        <span class="tag difficulty-${result.difficulty}">${result.difficulty}</span>
-                        <span class="tag">${result.language}</span>
+                        <span class="tag">${result.type}</span>
                         ${result.tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('')}
                     </div>
                     
