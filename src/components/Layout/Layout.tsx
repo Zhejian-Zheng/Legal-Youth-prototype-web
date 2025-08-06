@@ -58,7 +58,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     { text: 'Resource Library', icon: <LibraryIcon />, path: '/resource-library' },
     { text: 'Interactive Tools', icon: <ToolsIcon />, path: '/interactive-tools' },
     { text: 'Quiz Library', icon: <SchoolIcon />, path: '/quizzes' },
-    { text: 'User Forums', icon: <GroupIcon />, path: '/forums' },
+    { text: 'Discover & Create Forum', icon: <GroupIcon />, path: '/forums' },
     { text: 'Legal Aid Map', icon: <MapIcon />, path: '/legal-aid-map' },
     { text: 'Forum', icon: <ForumIcon />, path: '/forum' },
     { text: 'About Us', icon: <InfoIcon />, path: '/about' },

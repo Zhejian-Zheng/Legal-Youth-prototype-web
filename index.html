@@ -1056,8 +1056,8 @@
                 <li>
                     <a href="#forum">Forum <span class="dropdown-icon">▼</span></a>
                     <div class="dropdown">
-                        <a href="#your-posts">Your Posts</a>
-                        <a href="user-forums.html">User Forums</a>
+                        <a href="#your-posts">Post History</a>
+                        <a href="user-forums.html">Discover & Create Forum</a>
                         <a href="#messages">Chat Box</a>
                         <a href="#notifications">Notifications</a>
                         <a href="#forum-stats">Forum Stats</a>
@@ -1445,8 +1445,8 @@
             const pageNames = {
                 '#home': 'Legal Youth Homepage',
                 '#forum': 'Community Forum',
-                '#your-posts': 'Your Posts',
-                '#user-forums': 'User Forums',
+                '#your-posts': 'Post History',
+                '#user-forums': 'Discover & Create Forum',
                 '#messages': 'Messages',
                 '#notifications': 'Notifications',
                 '#forum-stats': 'Forum Stats',
@@ -1611,12 +1611,12 @@
         // Forum dropdown menu handlers
         document.querySelector('a[href="#your-posts"]').addEventListener('click', function(e) {
             e.preventDefault();
-            alert('Your Posts\n\nYour Recent Posts:\n\n"Tenant Rights in NYC" (2 days ago)\n   • 45 likes • 12 replies • 8 shares\n\n"Employment Contract Review" (1 week ago)\n   • 23 likes • 7 replies • 3 shares\n\n"Consumer Rights Checklist" (2 weeks ago)\n   • 67 likes • 15 replies • 12 shares\n\nTotal Posts: 18\nTotal Views: 2,450\nTotal Engagement: 890');
+            alert('Post History\n\nYour Recent Posts:\n\n"Tenant Rights in NYC" (2 days ago)\n   • 45 likes • 12 replies • 8 shares\n\n"Employment Contract Review" (1 week ago)\n   • 23 likes • 7 replies • 3 shares\n\n"Consumer Rights Checklist" (2 weeks ago)\n   • 67 likes • 15 replies • 12 shares\n\nTotal Posts: 18\nTotal Views: 2,450\nTotal Engagement: 890');
         });
 
         document.querySelector('a[href="#user-forums"]').addEventListener('click', function(e) {
             e.preventDefault();
-            alert('User Forums\n\nActive Community Forums:\n\nHousing Rights Forum\n   • 1,247 members • 456 active discussions\n\nEmployment Law Forum\n   • 892 members • 234 active discussions\n\nFamily Law Forum\n   • 567 members • 123 active discussions\n\nConsumer Rights Forum\n   • 734 members • 189 active discussions\n\nEducation Rights Forum\n   • 445 members • 98 active discussions\n\nPrivacy & Security Forum\n   • 623 members • 156 active discussions');
+            alert('Discover & Create Forum\n\nActive Community Forums:\n\nHousing Rights Forum\n   • 1,247 members • 456 active discussions\n\nEmployment Law Forum\n   • 892 members • 234 active discussions\n\nFamily Law Forum\n   • 567 members • 123 active discussions\n\nConsumer Rights Forum\n   • 734 members • 189 active discussions\n\nEducation Rights Forum\n   • 445 members • 98 active discussions\n\nPrivacy & Security Forum\n   • 623 members • 156 active discussions');
         });
 
         document.querySelector('a[href="#messages"]').addEventListener('click', function(e) {
