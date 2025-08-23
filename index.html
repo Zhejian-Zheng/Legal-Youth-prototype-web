@@ -28,12 +28,13 @@
         }
 
         .nav {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
+            flex-wrap: nowrap;
         }
 
         .logo {
@@ -42,12 +43,33 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: url('images/legal_icon.png') no-repeat center;
+            background-size: 80%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
+            flex-wrap: nowrap;
+            align-items: center;
         }
 
         .nav-links a {
@@ -58,6 +80,9 @@
             transition: all 0.3s;
             font-size: 1.1rem;
             position: relative;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
         }
 
         .nav-links a:hover {
@@ -154,20 +179,27 @@
 
         .auth-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             align-items: center;
         }
 
         .auth-btn {
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             border: 2px solid white;
-            border-radius: 4px;
+            border-radius: 6px;
             background: transparent;
             color: white;
             text-decoration: none;
             transition: all 0.3s;
             font-size: 1rem;
+            font-weight: 500;
             position: relative;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+            height: 40px;
         }
 
         .auth-btn:hover {
@@ -178,7 +210,8 @@
         }
 
         .auth-btn.primary {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.8);
         }
 
         .auth-btn.primary:hover {
@@ -240,9 +273,20 @@
             opacity: 0.9;
         }
 
-        .search-bar {
-            max-width: 500px;
+        .search-section {
+            max-width: 900px;
             margin: 0 auto 2rem;
+        }
+
+        .search-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-bar {
+            flex: 1;
         }
 
         .search-container {
@@ -250,26 +294,138 @@
             display: flex;
             align-items: center;
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
             overflow: hidden;
+        }
+
+        .advanced-search-btn {
+            background: white;
+            color: #1976d2;
+            padding: 1.5rem 2rem;
+            border: 2px solid #1976d2;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .advanced-search-btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-history {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        .search-history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-history h4 {
+            margin: 0;
+            color: #1976d2;
+            font-size: 1rem;
+        }
+
+        .clear-history-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .clear-history-btn:hover {
+            background: #ff5252;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+        }
+
+        .search-history-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .search-history-item {
+            background: #f0f8ff;
+            color: #1976d2;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #e3f2fd;
+        }
+
+        .search-history-item:hover {
+            background: #1976d2;
+            color: white;
+            transform: translateY(-1px);
         }
 
         .search-icon {
             position: absolute;
-            left: 1rem;
-            font-size: 1.2rem;
-            color: #666;
+            left: 1.5rem;
+            width: 24px;
+            height: 24px;
+            background: url('images/search.png') no-repeat center;
+            background-size: contain;
             z-index: 1;
         }
 
         .search-input {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
+            flex: 1;
+            padding: 1.5rem 1.5rem 1.5rem 4rem;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
+            border-radius: 12px;
+            font-size: 1.3rem;
             background: transparent;
+        }
+
+        .search-btn {
+            background: #e0e0e0;
+            color: #424242;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 60px;
+            margin-right: 0.5rem;
+        }
+
+        .search-btn:hover {
+            background: #d0d0d0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-btn:active {
+            transform: translateY(0);
         }
 
         .search-input:focus {
@@ -382,6 +538,56 @@
             left: 100%;
         }
 
+        /* Show More Button - Enhanced Styling */
+        .btn-show-more {
+            background: linear-gradient(135deg, #1976d2, #42a5f5);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-width: 200px;
+        }
+
+        .btn-show-more:hover {
+            background: linear-gradient(135deg, #1565c0, #1976d2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(25, 118, 210, 0.4);
+        }
+
+        .btn-show-more:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+        }
+
+        .btn-show-more.active {
+            background: linear-gradient(135deg, #d32f2f, #f44336);
+        }
+
+        .btn-show-more.active:hover {
+            background: linear-gradient(135deg, #c62828, #d32f2f);
+        }
+
+        .btn-show-more::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn-show-more:hover::before {
+            left: 100%;
+        }
+
         .btn-outline {
             background-color: transparent;
             color: white;
@@ -405,12 +611,7 @@
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             text-align: center;
-            transition: transform 0.2s;
             font-size: 1.1rem;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-4px);
         }
 
         .feature-icon {
@@ -419,11 +620,48 @@
             background-color: #1976d2;
             color: white;
             border-radius: 50%;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        .feature-icon.search-icon {
+            background: url('images/search.png') no-repeat center;
+            background-size: 50%;
+            background-color: #1976d2;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            position: relative;
+        }
+
+        .feature-icon.legal-icon {
+            background: url('images/legal_icon.png') no-repeat center;
+            background-size: 50%;
+            background-color: #1976d2;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
+        }
+
+        .explain-btn {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .explain-btn:hover {
+            background: #1565c0;
         }
 
         .categories {
@@ -570,19 +808,21 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: url('images/ask_ai.png') no-repeat center;
+            width: 80px;
+            height: 80px;
+            background: white url('images/ask_ai.png') no-repeat center;
             background-size: contain;
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
 
         .chat-button:hover {
-            transform: scale(1.1);
+            transform: scale(1.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
 
         /* Ripple effect for buttons */
@@ -783,21 +1023,21 @@
                 <span>Live Support Available</span>
             </div>
             <div class="status-indicator">
-                <span>🕒 24/7 Emergency Hotline</span>
+                <span>24/7 Emergency Hotline</span>
             </div>
             <div class="status-indicator">
-                <span>⚡ Live Quiz: 1,247 participants</span>
+                <span>Live Quiz: 1,247 participants</span>
             </div>
             <div class="status-indicator">
-                <span>💬 Forum: 5,234 members online</span>
+                <span>Forum: 5,234 members online</span>
             </div>
         </div>
         <div class="indicator-right">
             <div class="status-indicator">
-                <span>📞 1-800-EMERGENCY-LEGAL</span>
+                <span>1-800-EMERGENCY-LEGAL</span>
             </div>
             <div class="status-indicator">
-                <span>🌐 info@legalyouth.org</span>
+                <span>info@legalyouth.org</span>
             </div>
         </div>
     </div>
@@ -808,15 +1048,16 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <div class="logo">
-                ⚖️ Legal Youth
+            <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                <div class="logo-icon"></div>
+                Legal Youth
             </div>
             <ul class="nav-links">
                 <li>
                     <a href="#forum">Forum <span class="dropdown-icon">▼</span></a>
                     <div class="dropdown">
-                        <a href="#your-posts">Your Posts</a>
-                        <a href="user-forums.html">User Forums</a>
+                        <a href="#your-posts">Post History</a>
+                        <a href="user-forums.html">Discover & Create Forum</a>
                         <a href="#messages">Chat Box</a>
                         <a href="#notifications">Notifications</a>
                         <a href="#forum-stats">Forum Stats</a>
@@ -826,7 +1067,7 @@
                     <a href="#quizzes">Quizzes <span class="dropdown-icon">▼</span></a>
                     <div class="dropdown">
                         <a href="#rank">Your Rank & Points</a>
-                        <a href="quiz-library.html">Quiz Library</a>
+                        <a href="quiz-library.html">Discover & Create Quiz</a>
                         <a href="#live-competition">Live Quiz Competition</a>
                         <a href="#achievements">Achievements</a>
                         <a href="#leaderboard">Leaderboard</a>
@@ -839,19 +1080,19 @@
                         <a href="#legal-books">Legal Books</a>
                         <a href="#lawyer-videos">Lawyer Videos</a>
                         <a href="#case-studies">Case Studies</a>
-                        <a href="#legal-forms">Legal Forms</a>
+                        <a href="resource-library.html">Legal Forms</a>
                     </div>
                 </li>
                 <li>
                     <a href="#tools">Tools <span class="dropdown-icon">▼</span></a>
                     <div class="dropdown">
-                        <a href="#templates">Legal Templates</a>
-                        <a href="book-volunteer-lawyer.html">Book Volunteer Lawyer</a>
+                        <a href="interactive-tools.html">Legal Templates</a>
                         <a href="#calculator">Legal Calculator Collect</a>
                         <a href="#checklist">Rights Checklist</a>
                         <a href="#timeline">Case Timeline</a>
                     </div>
                 </li>
+                <li><a href="book-volunteer-lawyer.html">Book Volunteer Lawyer</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
             <div class="auth-buttons">
@@ -863,9 +1104,7 @@
 
     <!-- Breadcrumb -->
     <div class="breadcrumb">
-        <a href="#home">Home</a>
-        <span class="separator">></span>
-        <span id="current-page">Legal Youth Hub</span>
+        <span id="current-page">Legal Youth Homepage</span>
     </div>
 
     <!-- Hero Section -->
@@ -874,14 +1113,27 @@
             <h1>Your Legal Rights, Simplified</h1>
             <p>Get the legal information you need, when you need it. Free resources, tools, and guidance for young people.</p>
             
-            <div class="search-bar">
-                <div class="search-container">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" class="search-input" placeholder="Search for legal topics, articles, or resources...">
+            <div class="search-section">
+                <div class="search-row">
+                    <div class="search-bar">
+                        <div class="search-container">
+                            <div class="search-icon"></div>
+                            <input type="text" class="search-input" placeholder="Search for legal topics, articles, or resources..." id="mainSearchInput">
+                            <button class="search-btn" onclick="performSearchFromButton()">Search</button>
+                        </div>
+                    </div>
+                    <button class="advanced-search-btn" onclick="window.location.href='advanced-search.html'">Advanced Search</button>
+                </div>
+                <div class="search-history" id="searchHistory">
+                    <div class="search-history-header">
+                        <h4>Search History</h4>
+                        <button class="clear-history-btn" id="clearHistoryBtn" onclick="clearSearchHistory()">Clear History</button>
+                    </div>
+                    <div class="search-history-items" id="searchHistoryItems">
+                        <!-- Search history items will be populated by JavaScript -->
+                    </div>
                 </div>
             </div>
-            
-            <button class="btn" onclick="window.location.href='advanced-search.html'">Advanced Search</button>
         </div>
     </section>
 
@@ -943,42 +1195,51 @@
                 <p>ADA compliance, accommodations, and disability benefits</p>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 2rem;">
-            <button class="btn" id="show-more-btn" onclick="toggleCategories()">Show More...</button>
+        <div style="text-align: center; margin-top: 2rem; margin-bottom: 4rem;">
+            <button class="btn btn-show-more" id="show-more-btn" onclick="toggleCategories()">
+                <i class="fas fa-chevron-down" style="margin-right: 8px;"></i>
+                Show More Topics...
+            </button>
         </div>
 
         <!-- Features -->
         <h2 style="text-align: center; margin-bottom: 2rem; color: #1976d2;">Key Features</h2>
         <div class="features">
             <div class="feature-card">
-                <div class="feature-icon">🔍</div>
+                <div class="feature-icon search-icon"></div>
                 <h3>Advanced Search</h3>
-                <p>Fuzzy matching, spelling correction, and hot keyword suggestions to help you find exactly what you need.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🤖</div>
-                <h3>AI Assistant</h3>
-                <p>Get instant answers to your legal questions with our intelligent chatbot and automated analysis.</p>
+                <p>Comprehensive search functionality with legal topic filtering and resource categorization.</p>
+                <button class="explain-btn" onclick="showFeatureExplanation('search')">Learn More</button>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📚</div>
                 <h3>Resource Library</h3>
-                <p>Download templates, infographics, and educational videos to help you understand your rights.</p>
+                <p>Extensive collection of legal templates, guides, and educational materials for various legal topics.</p>
+                <button class="explain-btn" onclick="showFeatureExplanation('library')">Learn More</button>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🎮</div>
-                <h3>Interactive Tools</h3>
-                <p>Take quizzes, follow guided workflows, and earn titles as you learn about your legal rights.</p>
+                <div class="feature-icon legal-icon"></div>
+                <h3>Legal Templates</h3>
+                <p>Step-by-step guidance and document templates for common legal procedures and processes.</p>
+                <button class="explain-btn" onclick="showFeatureExplanation('templates')">Learn More</button>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🗺️</div>
-                <h3>Legal Aid Map</h3>
-                <p>Find legal aid centers in your area with our interactive map and service filters.</p>
+                <div class="feature-icon">👥</div>
+                <h3>Community Forum</h3>
+                <p>Connect with others, share experiences, and get support from the legal community.</p>
+                <button class="explain-btn" onclick="showFeatureExplanation('forum')">Learn More</button>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Legal Information</h3>
+                <p>Comprehensive legal information covering employment, housing, family law, and consumer rights.</p>
+                <button class="explain-btn" onclick="showFeatureExplanation('info')">Learn More</button>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">♿</div>
                 <h3>Accessibility</h3>
                 <p>Full WCAG compliance with screen reader support, keyboard navigation, and high contrast design.</p>
+                <button class="explain-btn" onclick="showFeatureExplanation('accessibility')">Learn More</button>
             </div>
         </div>
 
@@ -1035,16 +1296,16 @@
             <div class="footer-section">
                 <h3>Contact Us</h3>
                 <ul>
-                    <li>📧 info@legalyouth.org</li>
-                    <li>📞 1-800-LEGAL-YOUTH</li>
-                    <li>📍 123 Legal Street, Justice City, JC 12345</li>
-                    <li>⏰ Monday - Friday: 9:00 AM - 6:00 PM EST</li>
+                    <li>info@legalyouth.org</li>
+                    <li>1-800-LEGAL-YOUTH</li>
+                    <li>123 Legal Street, Justice City, JC 12345</li>
+                    <li>Monday - Friday: 9:00 AM - 6:00 PM EST</li>
                 </ul>
             </div>
         </div>
         
         <div class="emergency-banner">
-            <h3>🚨 Emergency Legal Help Available 24/7</h3>
+            <h3>Emergency Legal Help Available 24/7</h3>
             <p>If you're in immediate legal trouble, call our 24/7 hotline: <strong>1-800-EMERGENCY-LEGAL</strong></p>
         </div>
     </footer>
@@ -1053,20 +1314,94 @@
     <button class="chat-button" title="Ask our AI Legal Assistant" onclick="openAIChat()"></button>
 
     <script>
-        // Simple interactivity for demo
-        document.querySelector('.search-input').addEventListener('keypress', function(e) {
+        // Search history functionality
+        let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+        const searchHistoryElement = document.getElementById('searchHistory');
+        const searchHistoryItems = document.getElementById('searchHistoryItems');
+        const mainSearchInput = document.getElementById('mainSearchInput');
+
+        // Display search history
+        function displaySearchHistory() {
+            searchHistoryItems.innerHTML = '';
+            if (searchHistory.length > 0) {
+                searchHistory.slice(0, 5).forEach(term => {
+                    const item = document.createElement('div');
+                    item.className = 'search-history-item';
+                    item.textContent = term;
+                    item.addEventListener('click', () => {
+                        mainSearchInput.value = term;
+                        performSearch(term);
+                    });
+                    searchHistoryItems.appendChild(item);
+                });
+            } else {
+                // Show empty state message
+                const emptyMessage = document.createElement('div');
+                emptyMessage.style.color = '#666';
+                emptyMessage.style.fontStyle = 'italic';
+                emptyMessage.textContent = 'No search history yet';
+                searchHistoryItems.appendChild(emptyMessage);
+            }
+        }
+
+        // Add search term to history
+        function addToSearchHistory(term) {
+            if (term.trim() && !searchHistory.includes(term.trim())) {
+                searchHistory.unshift(term.trim());
+                searchHistory = searchHistory.slice(0, 10); // Keep only last 10 searches
+                localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+                displaySearchHistory();
+            }
+        }
+
+        // Perform search
+        function performSearch(term) {
+            addToSearchHistory(term);
+            // Here you would implement the actual search functionality
+            console.log('Searching for:', term);
+            // For demo purposes, show an alert
+            alert(`Search functionality would search for: ${term}`);
+        }
+
+        // Search input event listeners
+        mainSearchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                alert('Search functionality would be implemented here');
+                const searchTerm = this.value.trim();
+                if (searchTerm) {
+                    performSearch(searchTerm);
+                }
             }
         });
 
+        // Search button click handler
+        function performSearchFromButton() {
+            const searchTerm = mainSearchInput.value.trim();
+            if (searchTerm) {
+                performSearch(searchTerm);
+            }
+        }
+
+        // Search history is always visible now, so we don't need focus/blur handlers
+
+        // Clear search history function
+        function clearSearchHistory() {
+            if (confirm('Are you sure you want to clear your search history?')) {
+                searchHistory = [];
+                localStorage.removeItem('searchHistory');
+                displaySearchHistory();
+            }
+        }
+
+        // Initialize search history display
+        displaySearchHistory();
+
         document.querySelector('.chat-button').addEventListener('click', function() {
-            alert('AI Legal Assistant would open here');
+            window.location.href = 'ask-ai.html';
         });
 
         // AI Assistant function
         function openAIChat() {
-            alert('🤖 AI Legal Assistant\n\nWelcome! I can help you with:\n• Legal questions and advice\n• Document explanations\n• Rights clarification\n• Process guidance\n\nWhat would you like to know about?');
+            window.location.href = 'ask-ai.html';
         }
 
         // Advanced Search function
@@ -1108,10 +1443,10 @@
         function updateBreadcrumb(linkId) {
             const currentPage = document.getElementById('current-page');
             const pageNames = {
-                '#home': 'Legal Youth Hub',
+                '#home': 'Legal Youth Homepage',
                 '#forum': 'Community Forum',
-                '#your-posts': 'Your Posts',
-                '#user-forums': 'User Forums',
+                '#your-posts': 'Post History',
+                '#user-forums': 'Discover & Create Forum',
                 '#messages': 'Messages',
                 '#notifications': 'Notifications',
                 '#forum-stats': 'Forum Stats',
@@ -1122,7 +1457,7 @@
                 '#legal-forms': 'Legal Forms',
                 '#quizzes': 'Legal Quizzes',
                 '#rank': 'Your Rank & Points',
-                '#quiz-library': 'Quiz Library',
+                '#quiz-library': 'Discover & Create Quiz',
                 '#live-competition': 'Live Quiz Competition',
                 '#achievements': 'Achievements',
                 '#leaderboard': 'Leaderboard',
@@ -1203,13 +1538,19 @@
         document.querySelector('a[href="#forum"]').addEventListener('click', function(e) {
             e.preventDefault();
             setActiveNav('#forum');
-            alert('💬 Community Forum\n\nJoin discussions about legal topics, share experiences, and connect with others who are navigating similar legal situations.');
+                            alert('Community Forum\n\nJoin discussions about legal topics, share experiences, and connect with others who are navigating similar legal situations.');
         });
 
         document.querySelector('a[href="#quizzes"]').addEventListener('click', function(e) {
             e.preventDefault();
             setActiveNav('#quizzes');
             alert('🎯 Legal Quizzes\n\nTest your knowledge with interactive quizzes:\n\n• Employment Rights Quiz\n• Tenant Rights Quiz\n• Consumer Rights Quiz\n• Family Law Quiz\n• Education Rights Quiz');
+        });
+
+        // Legal Templates link handler
+        document.querySelector('a[href="interactive-tools.html"]').addEventListener('click', function(e) {
+            // Allow the link to work normally - it will navigate to interactive-tools.html
+            // No preventDefault() needed since we want the actual navigation
         });
 
         // Set initial active state (homepage)
@@ -1249,7 +1590,7 @@
 
         document.querySelector('a[href="#quiz-library"]').addEventListener('click', function(e) {
             e.preventDefault();
-            alert('Quiz Library\n\nAvailable Legal Quizzes:\n\n• Employment Rights Quiz (Beginner)\n• Tenant Rights Quiz (Intermediate)\n• Consumer Rights Quiz (Advanced)\n• Family Law Quiz (Expert)\n• Education Rights Quiz (Beginner)\n• Digital Privacy Quiz (Intermediate)\n• Immigration Rights Quiz (Advanced)\n• Criminal Justice Quiz (Expert)\n\nTotal: 25+ quizzes available');
+            alert('Discover & Create Quiz\n\nAvailable Legal Quizzes:\n\n• Employment Rights Quiz (Beginner)\n• Tenant Rights Quiz (Intermediate)\n• Consumer Rights Quiz (Advanced)\n• Family Law Quiz (Expert)\n• Education Rights Quiz (Beginner)\n• Digital Privacy Quiz (Intermediate)\n• Immigration Rights Quiz (Advanced)\n• Criminal Justice Quiz (Expert)\n\nTotal: 25+ quizzes available');
         });
 
         document.querySelector('a[href="#live-competition"]').addEventListener('click', function(e) {
@@ -1270,12 +1611,12 @@
         // Forum dropdown menu handlers
         document.querySelector('a[href="#your-posts"]').addEventListener('click', function(e) {
             e.preventDefault();
-            alert('Your Posts\n\nYour Recent Posts:\n\n"Tenant Rights in NYC" (2 days ago)\n   • 45 likes • 12 replies • 8 shares\n\n"Employment Contract Review" (1 week ago)\n   • 23 likes • 7 replies • 3 shares\n\n"Consumer Rights Checklist" (2 weeks ago)\n   • 67 likes • 15 replies • 12 shares\n\nTotal Posts: 18\nTotal Views: 2,450\nTotal Engagement: 890');
+            alert('Post History\n\nYour Recent Posts:\n\n"Tenant Rights in NYC" (2 days ago)\n   • 45 likes • 12 replies • 8 shares\n\n"Employment Contract Review" (1 week ago)\n   • 23 likes • 7 replies • 3 shares\n\n"Consumer Rights Checklist" (2 weeks ago)\n   • 67 likes • 15 replies • 12 shares\n\nTotal Posts: 18\nTotal Views: 2,450\nTotal Engagement: 890');
         });
 
         document.querySelector('a[href="#user-forums"]').addEventListener('click', function(e) {
             e.preventDefault();
-            alert('User Forums\n\nActive Community Forums:\n\nHousing Rights Forum\n   • 1,247 members • 456 active discussions\n\nEmployment Law Forum\n   • 892 members • 234 active discussions\n\nFamily Law Forum\n   • 567 members • 123 active discussions\n\nConsumer Rights Forum\n   • 734 members • 189 active discussions\n\nEducation Rights Forum\n   • 445 members • 98 active discussions\n\nPrivacy & Security Forum\n   • 623 members • 156 active discussions');
+            alert('Discover & Create Forum\n\nActive Community Forums:\n\nHousing Rights Forum\n   • 1,247 members • 456 active discussions\n\nEmployment Law Forum\n   • 892 members • 234 active discussions\n\nFamily Law Forum\n   • 567 members • 123 active discussions\n\nConsumer Rights Forum\n   • 734 members • 189 active discussions\n\nEducation Rights Forum\n   • 445 members • 98 active discussions\n\nPrivacy & Security Forum\n   • 623 members • 156 active discussions');
         });
 
         document.querySelector('a[href="#messages"]').addEventListener('click', function(e) {
@@ -1336,11 +1677,46 @@
             });
 
             if (isExpanded) {
-                showMoreBtn.textContent = 'Show Less...';
+                showMoreBtn.innerHTML = '<i class="fas fa-chevron-up" style="margin-right: 8px;"></i>Show Less Topics...';
                 showMoreBtn.classList.add('active');
             } else {
-                showMoreBtn.textContent = 'Show More...';
+                showMoreBtn.innerHTML = '<i class="fas fa-chevron-down" style="margin-right: 8px;"></i>Show More Topics...';
                 showMoreBtn.classList.remove('active');
+            }
+        }
+
+        // Feature explanation functionality
+        function showFeatureExplanation(feature) {
+            const explanations = {
+                search: {
+                    title: 'Advanced Search',
+                    content: 'Our advanced search system helps you find legal information quickly and efficiently. Features include:\n\n• Topic-based filtering\n• Resource categorization\n• Keyword suggestions\n• Recent search history\n• Saved searches\n• Export search results'
+                },
+                library: {
+                    title: 'Resource Library',
+                    content: 'Access a comprehensive collection of legal resources including:\n\n• Legal document templates\n• Educational guides and manuals\n• Video tutorials and webinars\n• Infographics and visual aids\n• State-specific legal forms\n• Multi-language resources\n• Downloadable PDFs and documents'
+                },
+                templates: {
+                    title: 'Legal Templates',
+                    content: 'Step-by-step guidance and document templates for common legal procedures:\n\n• Employment contract templates\n• Tenant rights documentation\n• Consumer complaint letters\n• Family law forms\n• Immigration applications\n• Legal correspondence templates\n• Interactive workflow guides'
+                },
+                forum: {
+                    title: 'Community Forum',
+                    content: 'Connect with the legal community and get support:\n\n• Ask questions and get answers\n• Share experiences and advice\n• Connect with legal professionals\n• Join topic-specific discussions\n• Access community resources\n• Participate in legal education\n• Build a support network'
+                },
+                info: {
+                    title: 'Legal Information',
+                    content: 'Comprehensive legal information covering multiple areas:\n\n• Employment law and workplace rights\n• Housing and tenant rights\n• Family law and domestic issues\n• Consumer protection and rights\n• Education law and student rights\n• Immigration and citizenship\n• Criminal justice and rights'
+                },
+                accessibility: {
+                    title: 'Accessibility Features',
+                    content: 'Full accessibility compliance and inclusive design:\n\n• Screen reader compatibility\n• Keyboard navigation support\n• High contrast design options\n• Text size adjustment\n• Voice command support\n• Alternative text for images\n• WCAG 2.1 AA compliance'
+                }
+            };
+
+            const explanation = explanations[feature];
+            if (explanation) {
+                alert(`${explanation.title}\n\n${explanation.content}`);
             }
         }
     </script>

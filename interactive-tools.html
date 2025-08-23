@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Tools - Legal Youth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            font-size: 16px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 0;
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: url('images/legal_icon.png') no-repeat center;
+            background-size: 80%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            position: relative;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            background-color: rgba(255,255,255,0.2);
+            border-bottom: 3px solid white;
+            font-weight: bold;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid white;
+        }
+
+        /* Dropdown menu */
+        .nav-links li {
+            position: relative;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+
+        .nav-links li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+        }
+
+        .dropdown a {
+            color: #333 !important;
+            padding: 0.75rem 1rem;
+            display: block;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a:hover {
+            background-color: #f5f5f5;
+            color: #1976d2 !important;
+        }
+
+        .dropdown-icon {
+            margin-left: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .nav-links li:hover .dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .auth-btn {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid white;
+            border-radius: 6px;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
+            position: relative;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+            height: 40px;
+        }
+
+        .auth-btn:hover {
+            background: white;
+            color: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .auth-btn.primary {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.8);
+        }
+
+        .auth-btn.primary:hover {
+            background: white;
+            color: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .auth-btn.active {
+            background: white;
+            color: #1976d2;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .breadcrumb {
+            background: white;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        .breadcrumb a {
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb .separator {
+            margin: 0 0.5rem;
+            color: #666;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 2rem;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .tool-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 15px;
+            font-size: 24px;
+        }
+
+        .tool-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .tool-description {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .tool-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .chip {
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .chip.workflow {
+            background: #f3e5f5;
+            color: #9c27b0;
+        }
+
+        .tool-button {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: white;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+        }
+
+        .question-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .option:hover {
+            border-color: #1976d2;
+            background: #f5f5f5;
+        }
+
+        .option.selected {
+            border-color: #1976d2;
+            background: #e3f2fd;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #1976d2;
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1976d2;
+            color: #1976d2;
+        }
+
+        .snackbar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Chat Button Styles */
+        .chat-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 80px;
+            height: 80px;
+            background: white url('images/ask_ai.png') no-repeat center;
+            background-size: contain;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                <div class="logo-icon"></div>
+                Legal Youth
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html#forum">Forum <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown">
+                        <a href="index.html#your-posts">Post History</a>
+                        <a href="user-forums.html">Discover & Create Forum</a>
+                        <a href="index.html#messages">Chat Box</a>
+                        <a href="index.html#notifications">Notifications</a>
+                        <a href="index.html#forum-stats">Forum Stats</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="index.html#quizzes">Quizzes <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown">
+                        <a href="index.html#rank">Your Rank & Points</a>
+                        <a href="quiz-library.html">Discover & Create Quiz</a>
+                        <a href="index.html#live-competition">Live Quiz Competition</a>
+                        <a href="index.html#achievements">Achievements</a>
+                        <a href="index.html#leaderboard">Leaderboard</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="index.html#resources">Resources <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown">
+                        <a href="index.html#hot-cases">Hot Cases</a>
+                        <a href="index.html#legal-books">Legal Books</a>
+                        <a href="index.html#lawyer-videos">Lawyer Videos</a>
+                        <a href="index.html#case-studies">Case Studies</a>
+                        <a href="resource-library.html">Legal Forms</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="index.html#tools" class="active">Tools <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown">
+                        <a href="interactive-tools.html">Legal Templates</a>
+                        <a href="index.html#calculator">Legal Calculator Collect</a>
+                        <a href="index.html#checklist">Rights Checklist</a>
+                        <a href="index.html#timeline">Case Timeline</a>
+                    </div>
+                </li>
+                <li><a href="book-volunteer-lawyer.html">Book Volunteer Lawyer</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="index.html#login" class="auth-btn">Login</a>
+                <a href="index.html#signup" class="auth-btn primary">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Legal Youth Homepage</a>
+        <span class="separator">></span>
+        <span id="current-page">Legal Templates</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Legal Templates</h1>
+            <p>Step-by-step guidance and templates for common legal issues</p>
+        </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <div class="container">
+        <div class="tools-grid" id="toolsGrid"></div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="workflowModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="workflowTitle"></h2>
+                <button class="close-btn" onclick="closeModal('workflowModal')">&times;</button>
+            </div>
+            <div id="workflowContent"></div>
+        </div>
+    </div>
+
+    <div class="snackbar" id="snackbar"></div>
+
+    <script>
+        const tools = [
+            {
+                id: 'tenant-rights',
+                title: 'Tenant Rights Workflow',
+                description: 'Step-by-step guide for dealing with eviction notices',
+                type: 'workflow',
+                icon: 'fas fa-home',
+                color: '#9c27b0',
+                steps: [
+                    {
+                        title: 'Review the Notice',
+                        content: 'Carefully read the eviction notice. Check the date, reason, and deadline for response.',
+                        tips: ['Take photos of the notice', 'Keep the original document', 'Note the exact deadline']
+                    },
+                    {
+                        title: 'Document Everything',
+                        content: 'Start documenting all communications with your landlord and any issues with the property.',
+                        tips: ['Take photos of any problems', 'Keep copies of all letters', 'Record phone calls if legal in your state']
+                    },
+                    {
+                        title: 'Seek Legal Help',
+                        content: 'Contact local legal aid organizations or tenant rights groups for assistance.',
+                        tips: ['Many services are free', 'Bring all your documents', 'Act quickly - time is important']
+                    }
+                ]
+            }
+        ];
+
+        let currentWorkflow = null;
+        let workflowStep = 0;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTools();
+        });
+
+        function renderTools() {
+            const toolsGrid = document.getElementById('toolsGrid');
+            toolsGrid.innerHTML = '';
+
+            tools.forEach(tool => {
+                const toolCard = document.createElement('div');
+                toolCard.className = 'tool-card';
+                toolCard.innerHTML = `
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="tool-avatar" style="background-color: ${tool.color}">
+                                <i class="${tool.icon}"></i>
+                            </div>
+                            <div>
+                                <h3 class="tool-title">${tool.title}</h3>
+                                <p class="tool-description">${tool.description}</p>
+                            </div>
+                        </div>
+                        <div class="tool-chips">
+                            <span class="chip ${tool.type}">${tool.type.toUpperCase()}</span>
+                        </div>
+                        <button class="tool-button" style="background-color: ${tool.color}" onclick="startTool('${tool.id}')">
+                            Start Workflow
+                        </button>
+                    </div>
+                `;
+                toolsGrid.appendChild(toolCard);
+            });
+        }
+
+        function startTool(toolId) {
+            const tool = tools.find(t => t.id === toolId);
+            if (!tool) return;
+
+            currentWorkflow = tool;
+            workflowStep = 0;
+            showWorkflowModal(tool);
+        }
+
+
+
+        function showWorkflowModal(workflow) {
+            document.getElementById('workflowTitle').textContent = workflow.title;
+            renderWorkflowStep();
+            document.getElementById('workflowModal').style.display = 'block';
+        }
+
+        function renderWorkflowStep() {
+            const step = currentWorkflow.steps[workflowStep];
+            const totalSteps = currentWorkflow.steps.length;
+
+            document.getElementById('workflowContent').innerHTML = `
+                <div style="margin-bottom: 20px;">
+                    <div style="background: #f0f0f0; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+                        Step ${workflowStep + 1} of ${totalSteps}
+                    </div>
+                    <h3>${step.title}</h3>
+                    <p>${step.content}</p>
+                    <div style="margin-top: 15px;">
+                        <strong>Tips:</strong>
+                        <ul style="margin-top: 5px;">
+                            ${step.tips.map(tip => `<li>${tip}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    ${workflowStep > 0 ? `<button class="nav-btn btn-outline" onclick="previousStep()">Previous</button>` : ''}
+                    ${workflowStep < totalSteps - 1 ? 
+                        `<button class="nav-btn btn-primary" onclick="nextStep()">Next</button>` : 
+                        `<button class="nav-btn btn-primary" onclick="completeWorkflow()">Complete</button>`
+                    }
+                </div>
+            `;
+        }
+
+        function nextStep() {
+            if (workflowStep < currentWorkflow.steps.length - 1) {
+                workflowStep++;
+                renderWorkflowStep();
+            }
+        }
+
+        function previousStep() {
+            if (workflowStep > 0) {
+                workflowStep--;
+                renderWorkflowStep();
+            }
+        }
+
+        function completeWorkflow() {
+            document.getElementById('workflowContent').innerHTML = `
+                <div style="text-align: center;">
+                    <h3>Workflow Complete!</h3>
+                    <p>You've successfully completed the ${currentWorkflow.title} workflow.</p>
+                    <p>Remember to follow all the steps and seek professional legal help if needed.</p>
+                    <button class="nav-btn btn-primary" onclick="closeModal('workflowModal')">Close</button>
+                </div>
+            `;
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function showSnackbar(message) {
+            const snackbar = document.getElementById('snackbar');
+            snackbar.textContent = message;
+            snackbar.style.display = 'block';
+            setTimeout(() => {
+                snackbar.style.display = 'none';
+            }, 3000);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // AI Assistant function
+        function openAIChat() {
+            window.location.href = 'ask-ai.html';
+        }
+    </script>
+
+    <!-- Chat Button -->
+    <button class="chat-button" title="Ask our AI Legal Assistant" onclick="openAIChat()"></button>
+</body>
+</html> 

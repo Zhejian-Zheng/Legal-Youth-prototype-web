@@ -55,13 +55,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     { text: 'Search', icon: <SearchIcon />, path: '/search' },
     { text: 'Advanced Search', icon: <AdvancedIcon />, path: '/advanced-search' },
     { text: 'Categories', icon: <CategoryIcon />, path: '/category/employment' },
-    { text: 'Resources', icon: <LibraryIcon />, path: '/resources' },
-    { text: 'Tools', icon: <ToolsIcon />, path: '/tools' },
-    { text: 'Quiz Library', icon: <SchoolIcon />, path: '/quizzes' },
-    { text: 'User Forums', icon: <GroupIcon />, path: '/forums' },
+    { text: 'Resource Library', icon: <LibraryIcon />, path: '/resource-library' },
+    { text: 'Interactive Tools', icon: <ToolsIcon />, path: '/interactive-tools' },
+    { text: 'Discover & Create Quiz', icon: <SchoolIcon />, path: '/quizzes' },
+    { text: 'Discover & Create Forum', icon: <GroupIcon />, path: '/forums' },
     { text: 'Legal Aid Map', icon: <MapIcon />, path: '/legal-aid-map' },
     { text: 'Forum', icon: <ForumIcon />, path: '/forum' },
     { text: 'About Us', icon: <InfoIcon />, path: '/about' },
+    { text: 'Book Volunteer Lawyer', icon: <PersonIcon />, path: '/book-volunteer-lawyer' },
   ];
 
   const handleDrawerToggle = () => {

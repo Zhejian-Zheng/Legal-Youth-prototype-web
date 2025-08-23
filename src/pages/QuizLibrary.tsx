@@ -199,7 +199,7 @@ const QuizLibrary: React.FC = () => {
       >
         <Box sx={{ textAlign: 'center', mb: 4 }}>
           <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
-            Quiz Library
+            Discover & Create Quiz
           </Typography>
           <Typography variant="h6" color="text.secondary" sx={{ mb: 3 }}>
             Test your legal knowledge with interactive quizzes
