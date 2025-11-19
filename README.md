@@ -36,6 +36,34 @@ npm start
 http://localhost:8080
 ```
 
+### Option 1b: Build React + Serve via Express
+```bash
+# Install dependencies (if not already)
+npm install
+
+# Produce optimized SPA bundle in /build
+npm run build
+
+# Install backend deps and start API + static server
+cd backend
+npm install
+NODE_ENV=production node server.js
+
+# Visit the Express server (serves build + /api routes)
+http://localhost:3001
+```
+
+### Tailwind CSS Workflow
+```bash
+# Install dependencies (already listed in package.json)
+npm install
+
+# Tailwind is compiled automatically by react-scripts
+npm start        # development with live Tailwind classes
+npm run build    # production bundle (output in /build)
+```
+Tailwind directives live in `src/index.css`. Add utility classes directly to JSX, or extend the design tokens in `tailwind.config.js` (brand/accent colors pre-defined for consistency).
+
 ### Option 2: Backend Server
 ```bash
 # Install backend dependencies

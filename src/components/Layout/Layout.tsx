@@ -32,7 +32,7 @@ import {
   KeyboardArrowUp as ArrowUpIcon,
   School as SchoolIcon,
   Group as GroupIcon,
-  Advanced as AdvancedIcon,
+  Tune as AdvancedIcon,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';

@@ -65,7 +65,7 @@ import {
   Share as ShareIcon,
   Download as DownloadIcon,
   Print as PrintIcon,
-  Advanced as AdvancedIcon,
+  Tune as AdvancedIcon,
   DateRange as DateRangeIcon,
   Language as LanguageIcon,
   AccessTime as AccessTimeIcon,

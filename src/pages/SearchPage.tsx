@@ -40,7 +40,7 @@ import {
   Clear as ClearIcon,
   FilterList as FilterIcon,
   Sort as SortIcon,
-  Advanced as AdvancedIcon,
+  Tune as AdvancedIcon,
 } from '@mui/icons-material';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -275,7 +275,7 @@ const SearchPage: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 variant="outlined"
-                size="large"
+                size="medium"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
